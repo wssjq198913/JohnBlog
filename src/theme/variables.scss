@@ -1,0 +1,40 @@
+
+$break-smallphone: 374px;
+$break-phone: 767px;
+$break-tablet: 991px;
+
+@mixin respond-to($media) {
+    @if $media == smallphone {
+        @media screen and (max-width: $break-smallphone) {
+            @content;
+        }
+    }
+    @else if $media == phone {
+        @media screen and (max-width: $break-phone) {
+            @content;
+        }
+    }
+    @else if $media == tablet {
+        @media screen and (min-width: $break-phone + 1px) and (max-width: $break-tablet) {
+            @content;
+        }
+    }
+    @else if $media == computer {
+        @media screen and (min-width: $break-tablet + 1px) {
+            @content;
+        }
+    }
+}
+
+@mixin box-shadow($top, $left, $blur, $spread, $color, $inset: false) {
+    @if $inset {
+        -webkit-box-shadow: inset $top $left $blur $spread $color;
+        -moz-box-shadow: inset $top $left $blur $spread $color;
+        box-shadow: inset $top $left $blur $spread $color;
+    }
+    @else {
+        -webkit-box-shadow: $top $left $blur $spread $color;
+        -moz-box-shadow: $top $left $blur $spread $color;
+        box-shadow: $top $left $blur $spread $color;
+    }
+}

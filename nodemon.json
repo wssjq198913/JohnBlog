@@ -1,0 +1,4 @@
+{
+    "verbose": true,
+    "ignore": ["src/", "package.json", "nodemon.json", "specs/"]
+}

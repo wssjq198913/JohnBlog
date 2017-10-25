@@ -1,0 +1,8 @@
+{
+    "presets": [
+        "react",
+        "env",
+        "stage-3"
+    ],
+    "plugins": ["transform-export-extensions"]
+}
