@@ -4,7 +4,7 @@
         "name": "JohnBlog",
         "script": "server/server.js",
         "env": {
-          "PORT": "4005"
+          "PORT": "80"
         },
         "env_uat" : {
           "NODE_ENV": "uat"
