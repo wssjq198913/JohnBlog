@@ -1,16 +1,22 @@
-import BlogList from './containers/BlogList/BlogList';
-// import BlogDetail from './containers/BlogDetail/BlogDetail';
+/**
+ * Created based on the AutoIQ-JS - 09/26/2017
+ */
 
-const routes = [
-  {
-    path: '/',
-    exact: true,
-    component: BlogList
-  },
-  {
-    path: '/detail/:id',
-    // component: BlogDetail
-  }
-];
+import React from 'react';
+import { Route, IndexRedirect } from 'react-router';
+import {
+  App,
+  BlogList,
+  BlogDetail
+} from './containers';
+export default () => {
+  return (
+    <Route path="/" component={App}>
+        { /* Home (main) route - the remaining routes were removed */}
+        <IndexRedirect to="/bloglist" />
+        <Route path="/bloglist" component={BlogList} />
+        <Route path="/blogdetail" component={BlogDetail} />
+    </Route>
 
-export default routes;
+  );
+};
