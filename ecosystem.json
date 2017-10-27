@@ -4,7 +4,7 @@
         "name": "JohnBlog",
         "script": "server/server.js",
         "env": {
-          "PORT": "4001"
+          "PORT": "4005"
         },
         "env_uat" : {
           "NODE_ENV": "uat"
@@ -18,7 +18,7 @@
         "ref": "origin/uat",
         "repo": "git@github.com:wssjq198913/JohnBlog.git",
         "path": "/var/www/johnblog",
-        "post-deploy": "NODE_ENV=production && pm2 startOrRestart server/ecosystem.json --env production"
+        "post-deploy": "NODE_ENV=production && pm2 startOrRestart server/ecosystem.json --env uat"
       }
     }
   }

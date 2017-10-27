@@ -3,7 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 var htmlWebpackPlugin = require('html-webpack-plugin');
 var htmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 var extractTextPlugin = require('extract-text-webpack-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var projectRootPath = path.resolve(__dirname, '../');
@@ -62,9 +62,6 @@ module.exports = {
     filename: isDevelopment ? '[name].js' : '[name].[chunkhash:8].js',
     chunkFilename: isDevelopment ? '[id].js' : '[id].[chunkhash:8].js',
     publicPath: ''
-  },
-  externals: {
-    jquery: 'window.$'
   },
   module: {
     loaders: [

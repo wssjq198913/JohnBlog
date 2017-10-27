@@ -8,7 +8,7 @@ import ejs from 'ejs';
 
 const app = Express();
 
-let viewPath = path.join(__dirname, '../client');
+let viewPath = path.join(__dirname, '../dist/client');
 
 app.set('views', viewPath);
 app.set('view engine', 'ejs');
@@ -16,7 +16,16 @@ app.engine('.ejs', ejs.__express);
 
 console.log('>>>MPP process.env.NODE_ENV = ', process.env.NODE_ENV);
 
-app.use(Express.static(path.join(__dirname, '../client')));
+if (process.env.NODE_ENV === 'development') {
+  var webpack = require('webpack');
+  var webpackConfig = require('../webpack/client.config.js');
+  var webpackDevMiddleware = require('webpack-dev-middleware');
+  var webpackHotMiddleware = require('webpack-hot-middleware');
+  var compiler = webpack(webpackConfig);
+}
+
+
+app.use(Express.static(path.join(__dirname, '../dist/client')));
 app.use(logger('dev'));
 app.use(compression());
 app.use(bodyParser.json());
@@ -26,6 +35,18 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, idtoken');
   next();
 });
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(webpackDevMiddleware(compiler, {
+    // noInfo: true,
+    stats: {
+      colors: true
+    }
+  }));
+  // enable hot-reload and state-preserving
+  // compilation error display
+  app.use(webpackHotMiddleware(compiler));
+}
 
 app.use((req, res, next) => {
   if (Object.keys(req.query).length > 0) {

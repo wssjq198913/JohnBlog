@@ -14,7 +14,7 @@
   },
   "betterScripts": {
     "start-dev": {
-      "command": "babel-node ./bin/server.js",
+      "command": "babel-node ./bin/devServer.js",
       "env": {
         "PORT": 4050,
         "NODE_ENV": "development"
@@ -32,7 +32,7 @@
     "start-uat": {
       "command": "node ./dist/server/server.js",
       "env": {
-        "PORT": 4001,
+        "PORT": 4005,
         "NODE_ENV": "uat"
       }
     },
