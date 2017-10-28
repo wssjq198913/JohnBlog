@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import Helmet from 'react-helmet';
-// import config from '../../config';
-// import styles from './App.scss';
+import { Navbar } from '../../components/index';
 
 class App extends Component {
   render() {
 
     return (
       <div>
-          tsfsdfs
-          {this.props.children}
+        <Navbar />
+        {this.props.children}
       </div>
     );
   }

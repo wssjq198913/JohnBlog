@@ -10,15 +10,5 @@
           "NODE_ENV": "uat"
         }
       }
-    ],
-    "deploy": {
-      "uat": {
-        "user": "root",
-        "host": "x.xx.xxx.xxx",
-        "ref": "origin/uat",
-        "repo": "git@github.com:wssjq198913/JohnBlog.git",
-        "path": "/var/www/johnblog",
-        "post-deploy": "NODE_ENV=production && pm2 startOrRestart server/ecosystem.json --env uat"
-      }
-    }
+    ]
   }

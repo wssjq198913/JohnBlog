@@ -53,18 +53,6 @@
       "env": {
         "NODE_ENV": "test"
       }
-    },
-    "push-uat": {
-      "command": "babel-node tools/push",
-      "env": {
-        "NODE_ENV": "uat"
-      }
-    },
-    "push-production": {
-      "command": "babel-node tools/push",
-      "env": {
-        "NODE_ENV": "production"
-      }
     }
   },
   "keywords": [
