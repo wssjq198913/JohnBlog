@@ -9,11 +9,8 @@ export default class Navbar extends Component {
     render() {
 
         return (
-            <nav>
-                <div className={styles['nav-content']}>
+            <nav className={styles['nav-content']}>
                     this is navbar
-                    <div></div>
-                </div>
             </nav>
         )
     }
