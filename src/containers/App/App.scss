@@ -15,12 +15,6 @@ body {
   margin: 0;
 }
 
-.menu {
-  position: fixed;
-  left: 50px;
-  top: 50px;
-}
-
 :global(.menu-collapsed) {
   overflow-y: hidden;
 }
