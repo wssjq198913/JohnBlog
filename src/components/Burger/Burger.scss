@@ -1,3 +1,7 @@
+:global(.menu-collapsed) .burger {
+    transform: translate(260px);
+}
+
 .burger {
   position: fixed;
   top: 50px;
@@ -7,6 +11,8 @@
   align-items: stretch;
   width: 40px;
   cursor: pointer;
+  transform: translateX(0);
+  transition: transform 0.5s ease-in-out;
 
   &:hover {
     > p {
