@@ -3,10 +3,18 @@
     left: 0;
     padding: 30px;
     position: fixed;
-    height: 100%;
-    min-width: 260px;
+    height: 100vh;
+    width: 260px;
     background-color: rgb(244, 247, 246);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transform: translateX(-260px);
+    transition: transform 0.5s ease-in-out;
+    z-index: 11;
+}
+
+
+:global(.menu-collapsed) .nav-content{
+    transform: translateX(0);
 }

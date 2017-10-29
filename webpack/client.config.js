@@ -85,13 +85,21 @@ module.exports = {
             }
           },
           {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: isDevelopment,
+              config: {
+                path: 'postcss.config.js'
+              }
+            }
+          },
+          {
             loader: 'sass-loader',
             options: {
               sourceMap: isDevelopment,
               modules: true
             }
-          }
-          ]
+          }]
         }))
       },
       {
@@ -102,6 +110,15 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: isDevelopment,
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: isDevelopment,
+              config: {
+                path: 'postcss.config.js'
+              }
             }
           }]
         }))
