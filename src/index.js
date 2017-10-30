@@ -19,5 +19,5 @@ ReactDOM.render(
     <Router history={history}>
       {getRoutes(store)}
     </Router>
-</Provider>
+  </Provider>
   , MOUNT_NODE);

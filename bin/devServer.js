@@ -1,6 +1,12 @@
-import app from '../server/devServer';
 import http from 'http';
 import config from '../server/config';
+import hook from 'css-modules-require-hook';
+hook({
+  extensions: ['.scss'],
+  generateScopedName: '[hash:base64:8]',
+});
+
+const app = require('../server/devServer').default;
 
 /**
  * Get port from environment and store in Express.

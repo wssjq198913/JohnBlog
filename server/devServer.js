@@ -5,6 +5,10 @@ import apiRoutes from './apiRoutes';
 import Express from 'express';
 import logger from 'morgan';
 import ejs from 'ejs';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { App } from '../src/containers';
+
 
 const app = Express();
 
@@ -61,7 +65,11 @@ app.use((req, res, next) => {
 app.use('/api', apiRoutes);
 
 app.get('*', (req, res) => {
-  res.render('index', { title: `Johnny's blog` });
+  const markup = renderToString(
+    <App/>
+  );
+  console.log(markup);
+  res.render('index', { title: `Johnny's blog`, markup: markup });
 });
 
 // catch 404 and forward to error handler

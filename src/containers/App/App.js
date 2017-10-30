@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Navbar, ArticleCard, Burger } from '../../components/index';
 import style from './App.scss';
 
-class App extends Component {
+export default class App extends Component {
   constructor() {
     super();
     this.state = { menuCollapsed: false};
@@ -35,7 +35,7 @@ class App extends Component {
 }
 
 // Define PropTypes
-App.propTypes = {
+App.propTypes = { 
 
 };
 
@@ -45,5 +45,5 @@ const mapStateToProps = () => ({
 // const mapDispatchToProps = () => {
 // };
 
-export default connect(mapStateToProps, null)(App);
+export const a = connect(mapStateToProps, null)(App);
 

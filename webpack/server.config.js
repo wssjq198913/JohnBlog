@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+var extractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -18,12 +19,35 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
-
+      { test: /\.(png|jpg|jpeg|gif)$/, use: "raw-loader" },
+      {
+        test: /\.scss$/,
+        use: extractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [{
+            loader: 'css-loader',
+            options: {
+              sourceMap: false,
+              modules: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: false,
+              modules: true
+            }
+          }]
+        })
+      },
     ]
   },
   plugins: [
     new CopyWebpackPlugin([
       { from: 'ecosystem.json'}
-    ])
+    ]),
+    new extractTextPlugin({
+      filename: 'CSSFORSSR'
+    }),
   ]
 }
