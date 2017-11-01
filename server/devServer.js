@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import compression from 'compression';
 import bodyParser from 'body-parser';
 import path from 'path';
@@ -5,9 +6,19 @@ import apiRoutes from './apiRoutes';
 import Express from 'express';
 import logger from 'morgan';
 import ejs from 'ejs';
+
+// enable SSR
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { App } from '../src/containers';
+import { Provider } from 'react-redux';
+import { createMemoryHistory, match, RouterContext } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import routes from '../src/routes';
+import createStore from '../src/store/create';
+
+const store = createStore();
+const syncHistory = syncHistoryWithStore(createMemoryHistory(), store);
+// enable SSR
 
 
 const app = Express();
@@ -52,24 +63,31 @@ if (process.env.NODE_ENV === 'development') {
   app.use(webpackHotMiddleware(compiler));
 }
 
-app.use((req, res, next) => {
-  if (Object.keys(req.query).length > 0) {
-    app.locals.queryString = {};
-  }
-  for (let key in req.query) {
-    app.locals.queryString[key] = req.query[key];
-  }
-  next();
-});
-
 app.use('/api', apiRoutes);
 
 app.get('*', (req, res) => {
-  const markup = renderToString(
-    <App/>
-  );
-  console.log(markup);
-  res.render('index', { title: `Johnny's blog`, markup: markup });
+  match({ routes: routes, location: req.url }, (err, redirect, props) => {
+    // console.log(req.url);
+    if (err) {
+      // there was an error somewhere during route matching
+      res.status(500).send(err.message)
+    } else if (redirect) {
+      // we haven't talked about `onEnter` hooks on routes, but before a
+      // route is entered, it can redirect. Here we handle on the server.
+      res.redirect(redirect.pathname + redirect.search)
+    } else if (props) {
+      // `RouterContext` is what the `Router` renders. `Router` keeps these
+      // `props` in its state as it listens to `browserHistory`. But on the
+      // server our app is stateless, so we need to use `match` to
+      // get these props before rendering.
+      const markup = renderToString(
+        <Provider store={store}>
+          <RouterContext {...props} history={syncHistory}/>
+        </Provider>
+      )
+      res.render('index', { title: `Johnny's blog`, markup: markup });
+    }
+  })
 });
 
 // catch 404 and forward to error handler
@@ -89,8 +107,7 @@ app.use((err, req, res, next) => {
   // render the error page
   res.status(err.status || 500);
   res.json({
-    message: err.message
-  });
+    message: err.message  });
 });
 
 export default app;

@@ -81,7 +81,8 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: isDevelopment,
-              modules: true
+              modules: true,
+              localIdentName: '[hash:base64:8]'
             }
           },
           {
@@ -93,13 +94,8 @@ module.exports = {
               }
             }
           },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: isDevelopment,
-              modules: true
-            }
-          }]
+            'sass-loader'
+          ]
         }))
       },
       {

@@ -4,9 +4,9 @@ import createStore from './store/create';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
-import getRoutes from './routes';
+import routes from './routes';
 
-const store = createStore(browserHistory);
+const store = createStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
 // ========================================================
@@ -17,7 +17,7 @@ const MOUNT_NODE = document.getElementById('react-root');
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      {getRoutes(store)}
+      {routes}
     </Router>
   </Provider>
   , MOUNT_NODE);

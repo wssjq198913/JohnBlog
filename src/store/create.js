@@ -1,26 +1,27 @@
 //import rootSaga from '../sagas'; // TODO: Next step
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
+import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
-import reducers from './../reducers/reducer';
+import reducers from './../reducers';
 import rootSaga from '../sagas/index';
 import {createLogger} from 'redux-logger';
 
-export default function createStore(history) {
+export default function createStore() {
 
   // Sync dispatched route actions to the history
-  const reduxRouterMiddleware = routerMiddleware(history);
+  const reduxRouterMiddleware = routerMiddleware(browserHistory);
   const sagaMiddleware = createSagaMiddleware();
   const middleware = [sagaMiddleware, reduxRouterMiddleware];
 
-  let composeEnhancers;
+  let enhancedCompose;
 
   middleware.push(sagaMiddleware);
 
-  if (__DEVELOPMENT__) {
+  if (process.env.NODE_ENV == 'development') {
     middleware.push(createLogger());
 
-    composeEnhancers =
+    enhancedCompose =
       typeof window === 'object' &&
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -28,10 +29,10 @@ export default function createStore(history) {
         }) : compose;
   }
   else {
-    composeEnhancers = compose;
+    enhancedCompose = compose;
   }
 
-  const enhancers = composeEnhancers(
+  const enhancers = enhancedCompose(
     applyMiddleware(...middleware)
   );
 

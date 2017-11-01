@@ -28,16 +28,12 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: false,
-              modules: true
+              modules: true,
+              localIdentName: '[hash:base64:8]'
             }
           },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: false,
-              modules: true
-            }
-          }]
+          'sass-loader'
+        ]
         })
       },
     ]

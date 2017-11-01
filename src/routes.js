@@ -9,14 +9,12 @@ import {
   BlogList,
   BlogDetail
 } from './containers';
-export default () => {
-  return (
-    <Route path="/" component={App}>
-        { /* Home (main) route - the remaining routes were removed */}
-        <IndexRedirect to="/bloglist" />
-        <Route path="/bloglist" component={BlogList} />
-        <Route path="/blogdetail" component={BlogDetail} />
-    </Route>
 
-  );
-};
+export default (
+  <Route path="/" component={App}>
+    { /* Home (main) route - the remaining routes were removed */}
+    <IndexRedirect to="/bloglist" />
+    <Route path="/bloglist" component={BlogList} />
+    <Route path="/blogdetail" component={BlogDetail} />
+  </Route>
+);
