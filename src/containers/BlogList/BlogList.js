@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import style from './BlogList.scss';
+import { push } from 'react-router-redux';
 import { Navbar, ArticleCard, Burger } from '../../components/index';
 
 class BlogList extends Component {
@@ -29,6 +30,7 @@ class BlogList extends Component {
           }
         </section>
         <Link to='/blogdetail'>go to detail</Link>
+        <a onClick={this.props.gotoDetail}>go to detail(react-router-redux)</a>
       </div>
     );
   }
@@ -42,11 +44,16 @@ BlogList.propTypes = {
 const mapStateToProps = () => ({
 });
 
-// const mapDispatchToProps = (dispatch) => {
-//   load: () => {
-//       dispatch();
-//   }
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // load: () => {
+    //     dispatch();
+    // }
+    gotoDetail: () => {
+      dispatch(push('/blogdetail'));
+    }
+  }
+};
 
-export default connect(mapStateToProps, null)(BlogList);
+export default connect(mapStateToProps, mapDispatchToProps)(BlogList);
 

@@ -11,13 +11,11 @@ import ejs from 'ejs';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
-import { createMemoryHistory, match, RouterContext } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { match, RouterContext } from 'react-router';
 import routes from '../src/routes';
 import createStore from '../src/store/create';
 
 const store = createStore();
-const syncHistory = syncHistoryWithStore(createMemoryHistory(), store);
 // enable SSR
 
 const app = Express();
@@ -68,12 +66,13 @@ app.get('*', (req, res) => {
       // `props` in its state as it listens to `browserHistory`. But on the
       // server our app is stateless, so we need to use `match` to
       // get these props before rendering.
+      const initialData = store.getState();
       const markup = renderToString(
         <Provider store={store}>
-          <RouterContext {...props} history={syncHistory}/>
+          <RouterContext {...props}/>
         </Provider>
       )
-      res.render('index', { title: `Johnny's blog`, markup: markup });
+      res.render('index', { title: `Johnny's blog`, markup: markup, initialData: JSON.stringify(initialData) });
     }
   })
 });

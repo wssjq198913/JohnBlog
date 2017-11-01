@@ -7,7 +7,7 @@ import reducers from './../reducers';
 import rootSaga from '../sagas/index';
 import {createLogger} from 'redux-logger';
 
-export default function createStore() {
+export default function createStore(preloadedState) {
 
   // Sync dispatched route actions to the history
   const reduxRouterMiddleware = routerMiddleware(browserHistory);
@@ -36,7 +36,7 @@ export default function createStore() {
     applyMiddleware(...middleware)
   );
 
-  const store = _createStore(reducers, enhancers)
+  const store = _createStore(reducers, preloadedState, enhancers)
 
   sagaMiddleware.run(rootSaga) //register sagas
 
