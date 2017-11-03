@@ -54,6 +54,7 @@ app.use('/api', apiRoutes);
 app.get('*', (req, res) => {
   match({ routes: routes, location: req.url }, (err, redirect, props) => {
     // console.log(req.url);
+    //aaa
     if (err) {
       // there was an error somewhere during route matching
       res.status(500).send(err.message)
