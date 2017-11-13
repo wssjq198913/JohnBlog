@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import style from './BlogList.scss';
 import { push } from 'react-router-redux';
 import { Navbar, ArticleCard, Burger } from '../../components/index';
+import { loadBlogs } from '../../actions';
 
 class BlogList extends Component {
   constructor() {
@@ -34,6 +35,10 @@ class BlogList extends Component {
       </div>
     );
   }
+}
+
+BlogList.InitialAction = () => {
+  return loadBlogs();
 }
 
 // Define PropTypes

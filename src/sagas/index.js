@@ -1,8 +1,8 @@
-import { all } from 'redux-saga/effects'
-// import { watchLoadBlogListAsync } from './blogList.js';
+import { all, fork } from 'redux-saga/effects'
+import { watchLoadBlogListAsync } from './blogList.js';
 
 export default function* rootSaga() {
     yield all([
-        // fork(watchLoadBlogListAsync)
+        fork(watchLoadBlogListAsync)
     ]);
 }

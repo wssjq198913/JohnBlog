@@ -36,9 +36,9 @@ export default function createStore(preloadedState) {
     applyMiddleware(...middleware)
   );
 
-  const store = _createStore(reducers, preloadedState, enhancers)
+  const store = _createStore(reducers, preloadedState, enhancers);
 
-  sagaMiddleware.run(rootSaga) //register sagas
-
+  sagaMiddleware.run(rootSaga); //register sagas
+  store.runSaga = sagaMiddleware.run;
   return store;
 }

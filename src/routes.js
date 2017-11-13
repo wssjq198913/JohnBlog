@@ -16,5 +16,6 @@ export default (
     <IndexRedirect to="/bloglist" />
     <Route path="/bloglist" component={BlogList} />
     <Route path="/blogdetail" component={BlogDetail} />
+    <Route path="*" component={BlogDetail} status={404} />
   </Route>
 );
