@@ -7,7 +7,9 @@
           "PORT": "80"
         },
         "env_uat" : {
-          "NODE_ENV": "uat"
+          "NODE_ENV": "uat",
+          "HOST": "http://120.92.133.3",
+          "PORT": 80
         }
       }
     ]

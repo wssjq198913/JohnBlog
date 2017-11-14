@@ -11,7 +11,7 @@ const app = require('../server/devServer').default;
 /**
  * Get port from environment and store in Express.
  */
-let port = normalizePort(config.port || '4040');
+let port = normalizePort(config.port || '4050');
 app.set('port', port);
 
 /**

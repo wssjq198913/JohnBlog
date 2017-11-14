@@ -28,7 +28,9 @@ var plugins = [
   new webpack.IgnorePlugin(/webpack-stats\.json$/),
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: isDevelopment ? JSON.stringify('development') : JSON.stringify('production')
+      NODE_ENV: isDevelopment ? JSON.stringify('development') : JSON.stringify('production'),
+      HOST: JSON.stringify(process.env.HOST),
+      PORT: JSON.stringify(process.env.PORT)
     },
     __DEVELOPMENT__: isDevelopment
   })

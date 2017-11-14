@@ -1,5 +1,6 @@
 const environmentVariables = {
-    // TO ADD
+    port: process.env.PORT,
+    host: process.env.HOST
 }
 
 module.exports = Object.assign({

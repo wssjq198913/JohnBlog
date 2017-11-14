@@ -16,6 +16,7 @@
     "start-dev": {
       "command": "babel-node ./bin/devServer.js",
       "env": {
+        "HOST": "http://localhost",
         "PORT": 4050,
         "NODE_ENV": "development"
       }
@@ -23,7 +24,9 @@
     "build-client-uat": {
       "command": "webpack --colors --display-error-details --config webpack/client.config.js",
       "env": {
-        "NODE_ENV": "uat"
+        "NODE_ENV": "uat",
+        "HOST": "http://120.92.133.3",
+        "PORT": 80
       }
     },
     "build-server-uat": {
@@ -32,7 +35,7 @@
     "start-uat": {
       "command": "node ./dist/server/server.js",
       "env": {
-        "PORT": 4005,
+        "PORT": 4050,
         "NODE_ENV": "uat"
       }
     },
