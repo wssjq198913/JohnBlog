@@ -65,6 +65,9 @@ module.exports = {
     chunkFilename: isDevelopment ? '[id].js' : '[id].[chunkhash:8].js',
     publicPath: ''
   },
+  externals: {
+    jquery: 'window.$'
+  },
   module: {
     loaders: [
       { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader', 'eslint-loader'] },

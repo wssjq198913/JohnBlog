@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import style from './BlogList.scss';
 import { push } from 'react-router-redux';
-import { Navbar, ArticleCard, Burger } from '../../components/index';
+import { Navbar, ArticleCard, Burger, GoTop } from '../../components/index';
 import { loadBlogs } from '../../actions';
 
 class BlogList extends Component {
@@ -21,6 +21,7 @@ class BlogList extends Component {
     const articles = [1, 2, 3, 4, 5, 6];
     return (
       <div>
+        <GoTop/>
         <Navbar menuCollapsed={this.state.menuCollapsed} />
         <Burger click={(e) => this.showMenu(e)} />
         <section className={style.container}>

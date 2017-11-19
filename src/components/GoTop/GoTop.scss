@@ -1,0 +1,11 @@
+.go-top {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    transition: all .2s linear;
+    transform: translateX(200px);
+
+    &.show {
+        transform: translateX(0);
+    }
+}
