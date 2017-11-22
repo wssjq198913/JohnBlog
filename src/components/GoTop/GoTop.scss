@@ -4,8 +4,31 @@
     right: 15px;
     transition: all .2s linear;
     transform: translateX(200px);
-
+    
     &.show {
         transform: translateX(0);
+    }
+
+    & > span {
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background-color: #607d8b;
+        border-radius: 50%;
+        color: white;
+        box-shadow: 0 0 3px 0 rgba(0,0,0,.12), 0 3px 3px 0 rgba(0,0,0,.24);
+        transition: box-shadow .2s linear;
+
+        &:hover {
+            box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+        }
+
+        span {
+            transform: rotate(-90deg);
+        }
     }
 }

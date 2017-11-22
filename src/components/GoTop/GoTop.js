@@ -20,7 +20,9 @@ export default class GoTop extends Component {
     render() {
         return (
             <div className={styles['go-top']} onClick={this.goTop}>
-                <button>go back to top</button>
+                <span>
+                    <span>></span>
+                </span>
             </div>
         )
     }
