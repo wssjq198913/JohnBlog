@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as nprogress from 'nprogress';
 import style from './App.scss';
+import 'nprogress/nprogress.css';
 
 class App extends Component {
   hideMenu() {
     document.body.className = '';
+  }
+  componentDidMount(){
+    document.addEventListener('DOMContentLoaded', () => {
+      nprogress.start();
+    })
+    window.addEventListener('load', () => {
+      nprogress.done();
+    })
   }
   render() {
     return (

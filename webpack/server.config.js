@@ -20,6 +20,7 @@ module.exports = {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
       { test: /\.(png|jpg|jpeg|gif)$/, use: "raw-loader" },
+      { test: /\.css$/, use: "raw-loader" },
       {
         test: /\.scss$/,
         use: extractTextPlugin.extract({

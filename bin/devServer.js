@@ -2,7 +2,7 @@ import http from 'http';
 import config from '../server/config';
 import hook from 'css-modules-require-hook';
 hook({
-  extensions: ['.scss'],
+  extensions: ['.scss', '.css'],
   generateScopedName: '[hash:base64:8]',
 });
 
