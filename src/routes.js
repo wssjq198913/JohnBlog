@@ -7,14 +7,15 @@ import { Route, IndexRoute } from 'react-router';
 import {
   App,
   BlogList,
-  BlogDetail
+  BlogDetail,
+  NotFound
 } from './containers';
 
 export default (
   <Route path="/" component={App}>
     { /* Home (main) route - the remaining routes were removed */}
     <IndexRoute component={BlogList}/>>
-    <Route path="/blogdetail" component={BlogDetail} />
-    <Route path="*" component={BlogDetail} status={404} />
+    <Route path="/blogs/:year/:month/:day/:topic" component={BlogDetail} />
+    <Route path="*" component={NotFound} status={404} />
   </Route>
 );

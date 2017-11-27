@@ -6,3 +6,4 @@ bin/server.js
 src/index.html
 mocks/*
 specs/*
+Blogs/*

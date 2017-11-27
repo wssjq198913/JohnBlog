@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch) => {
     //     dispatch();
     // }
     gotoDetail: () => {
-      dispatch(push('/blogdetail'));
+      dispatch(push('blogs/2017/05/01/test_blog'));
     }
   }
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as nprogress from 'nprogress';
+import nprogress from 'nprogress';
 import style from './App.scss';
 import 'nprogress/nprogress.css';
 

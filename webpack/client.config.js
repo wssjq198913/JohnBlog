@@ -53,7 +53,7 @@ else {
 }
 
 module.exports = {
-  devtool: isDevelopment ? 'inline-source-map' : false,
+  devtool: isDevelopment ? 'eval' : false,
   context: path.resolve(__dirname, '..'),
   entry: {
     vendor: ['babel-polyfill', 'react', 'react-dom', 'react-router', 'redux', 'react-redux', 'redux-saga', 'lodash', 'react-helmet'],
