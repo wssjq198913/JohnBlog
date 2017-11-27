@@ -17,11 +17,13 @@ marked.setOptions({
 
 class BlogDetail extends Component {
   componentDidMount() {
-    this.props.load();
+    if (this.props.content == null || this.props.content == '') {
+      this.props.load();
+    }
   }
   render() {
     return (
-      <div>this is detail
+      <div>
         <article dangerouslySetInnerHTML={{__html: this.props.content}}></article>
       </div>
     );

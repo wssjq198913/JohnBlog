@@ -78,6 +78,8 @@ app.get('*', (req, res) => {
         for(let component of props.components){
           if (component.InitialAction) {
             store.dispatch(component.InitialAction());
+            console.log('232342342342342342');
+            console.log(component.InitialAction());
           }
         }
         store.dispatch(END);
