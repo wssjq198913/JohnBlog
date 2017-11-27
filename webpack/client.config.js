@@ -63,7 +63,7 @@ module.exports = {
     path: assetsPath,
     filename: isDevelopment ? '[name].js' : '[name].[chunkhash:8].js',
     chunkFilename: isDevelopment ? '[id].js' : '[id].[chunkhash:8].js',
-    publicPath: '/'
+    publicPath: process.env.HOST + ':' + process.env.PORT + '/'
   },
   externals: {
     jquery: 'window.$'
