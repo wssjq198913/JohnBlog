@@ -41,7 +41,8 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: 'ecosystem.json'}
+      { from: 'ecosystem.json'},
+      { from: 'Blogs', to: 'Blogs'}
     ]),
     new extractTextPlugin({
       filename: 'CSSFORSSR'
