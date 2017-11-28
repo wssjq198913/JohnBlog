@@ -21,6 +21,11 @@ const store = createStore();
 // enable SSR
 
 const app = Express();
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
 app.use(favicon(path.join(__dirname, 'favicon.ico')))
 
 let viewPath = path.join(__dirname, '../client');
