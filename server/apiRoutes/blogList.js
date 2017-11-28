@@ -8,7 +8,8 @@ blogListRoute.get('/loadBlogList', (req, res) => {
 });
 
 function getAllBlogs() {
-    const blogPath = path.join(__dirname, '../../Blogs/');
+    const isDevelopment = process.env.NODE_ENV == 'development';
+    const blogPath = isDevelopment ? path.join(__dirname, '../../Blogs/') : path.join(__dirname, 'Blogs/');
     let blogs = [];
     const files = fs.readdirSync(blogPath);
     files.forEach((itm) => {
