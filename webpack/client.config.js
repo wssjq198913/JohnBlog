@@ -5,6 +5,7 @@ var htmlWebpackPlugin = require('html-webpack-plugin');
 var htmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var extractTextPlugin = require('extract-text-webpack-plugin');
+var compressionPlugin = require("compression-webpack-plugin");
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var projectRootPath = path.resolve(__dirname, '../');
 var assetsPath = path.resolve(__dirname, '../dist/client');
@@ -18,11 +19,13 @@ var plugins = [
     alwaysWriteToDisk: true
   }),
   new htmlWebpackHarddiskPlugin(),
-  // new CopyWebpackPlugin([
-  //   { from: 'static/favicon.ico' },
-  // ]),
   new extractTextPlugin({
     filename: isDevelopment ? '[name].css' : '[name].[hash].css',
+  }),
+  new compressionPlugin({
+    asset: '[path].gz[query]',
+    algorithm: "gzip",
+    test: /\.js$/,
   }),
   new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
   new webpack.IgnorePlugin(/webpack-stats\.json$/),

@@ -40,7 +40,11 @@ if (process.env.NODE_ENV === 'development') {
   var compiler = webpack(webpackConfig);
 }
 
-
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
 app.use(Express.static(path.join(__dirname, '../dist/client')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
