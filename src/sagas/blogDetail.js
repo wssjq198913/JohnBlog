@@ -3,9 +3,13 @@ import apiClient from '../helpers/apiClient';
 import * as actions from '../actions';
 import config from '../config';
 const { host, port } = config;
-export function* loadBlogDetailAsync() {
+export function* loadBlogDetailAsync(date, topic) {
     try {
-        let result = yield call(apiClient, `${host}:${port}/api/blogDetail/loadBlogDetail`, 'GET');
+        const request = {
+            date,
+            topic
+        }
+        let result = yield call(apiClient, `${host}:${port}/api/blogDetail/loadBlogDetail`, 'POST', JSON.stringify(request));
         yield put(actions.loadBlogDetailSuccess(result))
     }
     catch (error) {
@@ -15,8 +19,8 @@ export function* loadBlogDetailAsync() {
 
 export function* watchLoadBlogDetailAsync() {
     while (true) {
-        yield take(actions.LOAD_BLOG_DETAIL);
-        yield call(loadBlogDetailAsync);
+        const { date, topic } = yield take(actions.LOAD_BLOG_DETAIL);
+        yield call(loadBlogDetailAsync, date, topic);
     }
 }
 

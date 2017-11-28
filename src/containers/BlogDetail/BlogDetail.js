@@ -17,8 +17,10 @@ marked.setOptions({
 
 class BlogDetail extends Component {
   componentDidMount() {
-    if (this.props.content == null || this.props.content == '') {
-      this.props.load();
+    if (this.props.content == null || 
+      this.props.content == '' || 
+      this.props.topic != this.props.params.topic) {
+      this.props.load(`${this.props.params.year}/${this.props.params.month}/${this.props.params.day}`, this.props.params.topic);
     }
   }
   render() {
@@ -30,8 +32,8 @@ class BlogDetail extends Component {
   }
 }
 
-BlogDetail.InitialAction = () => {
-  return loadBlogDetail();
+BlogDetail.InitialAction = (date, topic) => {
+  return loadBlogDetail(date, topic);
 }
 
 // Define PropTypes
@@ -40,13 +42,15 @@ BlogDetail.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  content: state.reducers.detail.Content == null ? '' : marked(state.reducers.detail.Content)
+  content: state.reducers.detail.content == null ? '' : marked(state.reducers.detail.content),
+  date: state.reducers.detail.date,
+  topic: state.reducers.detail.topic
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    load: () => {
-      dispatch(BlogDetail.InitialAction());
+    load: (date, topic) => {
+      dispatch(BlogDetail.InitialAction(date, topic));
     }
   }
 };

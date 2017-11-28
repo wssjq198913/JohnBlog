@@ -2,7 +2,9 @@ import { LOAD_BLOGS, LOAD_BLOGS_SUCCESS, LOAD_BLOG_DETAIL, LOAD_BLOG_DETAIL_SUCC
 const initialState = {
     blogs: [],
     detail: {
-        Content: null
+        content: null,
+        date: null,
+        topic: null
     },
     loading: false
 }
@@ -35,7 +37,9 @@ function reducers(state = initialState, action = {}) {
                         ...state,
                         loading: false,
                         detail: {
-                            Content: action.payload.Content
+                            content: action.payload.content,
+                            date: action.payload.date,
+                            topic: action.payload.topic
                         }
                     };
                 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import style from './BlogList.scss';
 import { push } from 'react-router-redux';
 import { Navbar, ArticleCard, Burger, GoTop } from '../../components/index';
@@ -12,13 +11,17 @@ class BlogList extends Component {
     super();
     this.state = { menuCollapsed: false };
   }
-  showMenu(event, ) {
+  componentDidMount() {
+    if(this.props.blogs == null || this.props.blogs.length == 0){
+      this.props.load();
+    }
+  }
+  showMenu(event) {
     document.body.className = 'menu-collapsed';
     event.stopPropagation();
   }
 
   render() {
-    const articles = [1, 2, 3, 4, 5, 6];
     return (
       <div>
         <GoTop/>
@@ -26,13 +29,11 @@ class BlogList extends Component {
         <Burger click={(e) => this.showMenu(e)} />
         <section className={style.container}>
           {
-            articles.map((index) => {
-              return <ArticleCard key={index} />;
+            this.props.blogs.map((item, index) => {
+              return <ArticleCard key={index} {...item} gotoDetail={this.props.gotoDetail}/>;
             })
           }
         </section>
-        <Link to='/blogdetail'>go to detail</Link>
-        <a onClick={this.props.gotoDetail}>go to detail(react-router-redux)</a>
       </div>
     );
   }
@@ -47,16 +48,17 @@ BlogList.propTypes = {
 
 };
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state) => ({
+  blogs: state.reducers.blogs
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // load: () => {
-    //     dispatch();
-    // }
-    gotoDetail: () => {
-      dispatch(push('blogs/2017/05/01/test_blog'));
+    load: () => {
+        dispatch(BlogList.InitialAction());
+    },
+    gotoDetail: (date, title) => {
+      dispatch(push(`blogs/${date}/${title}`));
     }
   }
 };

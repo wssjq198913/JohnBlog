@@ -10,17 +10,17 @@ export default class ArticleCard extends Component {
 
         return (
             <article className={styles['article-card']}>
-                <header>
-                    <p>开发NodeJS</p>
+                <header onClick={() => this.props.gotoDetail(this.props.date, this.props.title)}>
+                    <p>{this.props.title}</p>
                 </header>
-                <section>Charles其实是一款代理服务器，通过成为电脑或者浏览器的代理，然后截取请求和请求结果达到分析抓包的目的。该软件是用Java写的，能够在Windows，Mac，Linux上使用。开发iOS都在Mac系统上吧，安装Charles的时候要先装好Java环境。 </section>
+                <section>{this.props.shortDescription}</section>
                 <footer>
                     <div className={styles.author}>
-                        <p>Johnny</p>
-                        <p>Jan 15</p>
+                        <p>{this.props.author}</p>
+                        <p>{this.props.date}</p>
                     </div>
                     <div className={styles['article-type']}>
-                        <p>JavaScript</p>
+                        <p>{this.props.category}</p>
                     </div>
                 </footer>
             </article>
