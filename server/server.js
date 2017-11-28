@@ -65,6 +65,9 @@ app.get('*', (req, res) => {
         const rootTask = store.runSaga(rootSagas);
         for(let component of props.components){
           if (component.InitialAction) {
+            if (component.InitialAction().type === 'LOAD_BLOG_DETAIL') {
+              store.dispatch(component.InitialAction(`${props.params.year}/${props.params.month}/${props.params.day}`, props.params.topic));
+            }
             store.dispatch(component.InitialAction());
           }
         }

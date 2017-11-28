@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import style from './BlogList.scss';
 import { push } from 'react-router-redux';
-import { Navbar, ArticleCard, Burger, GoTop } from '../../components/index';
+import { Navbar, ArticleCard, Burger, GoTop } from '../../components';
 import { loadBlogs } from '../../actions';
 
 class BlogList extends Component {
@@ -16,18 +15,14 @@ class BlogList extends Component {
       this.props.load();
     }
   }
-  showMenu(event) {
-    document.body.className = 'menu-collapsed';
-    event.stopPropagation();
-  }
 
   render() {
     return (
       <div>
-        <GoTop/>
-        <Navbar menuCollapsed={this.state.menuCollapsed} />
-        <Burger click={(e) => this.showMenu(e)} />
-        <section className={style.container}>
+        <GoTop />
+        <Navbar />
+        <Burger click={(e) => this.props.showMenu(e)} />
+        <section className='container'>
           {
             this.props.blogs.map((item, index) => {
               return <ArticleCard key={index} {...item} gotoDetail={this.props.gotoDetail}/>;

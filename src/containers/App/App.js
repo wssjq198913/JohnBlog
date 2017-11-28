@@ -6,6 +6,10 @@ import style from './App.scss';
 import 'nprogress/nprogress.css';
 
 class App extends Component {
+  showMenu(event) {
+    document.body.className = 'menu-collapsed';
+    event.stopPropagation();
+  }
   hideMenu() {
     document.body.className = '';
   }
@@ -20,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div className={style.app} onClick={() => this.hideMenu()} ref={(component) => { this.App = component; }}>
-        {this.props.children}
+        {React.cloneElement(this.props.children, { showMenu: this.showMenu })}
       </div>
     );
   }

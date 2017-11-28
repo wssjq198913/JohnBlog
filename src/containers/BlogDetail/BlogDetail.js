@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import marked from 'marked';
 import { loadBlogDetail } from '../../actions';
+import { Navbar, Burger, GoTop } from '../../components/index';
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -25,7 +26,10 @@ class BlogDetail extends Component {
   }
   render() {
     return (
-      <div>
+      <div className='container'>
+        <GoTop />
+        <Navbar />
+        <Burger click={(e) => this.props.showMenu(e)} />
         <article dangerouslySetInnerHTML={{__html: this.props.content}}></article>
       </div>
     );

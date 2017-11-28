@@ -24,14 +24,14 @@ body {
   overflow-y: hidden;
 }
 
-.container {
+:global(.container) {
   width: 900px;
   margin: 0 auto;
   padding-top: 200px;
   min-height: 600px;
 }
 
-:global(.menu-collapsed) .container:before {
+:global(.menu-collapsed) :global(.container:before) {
   content: '';
   background-color: #000;
   opacity: .5;
