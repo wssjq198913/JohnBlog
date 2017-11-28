@@ -6,6 +6,7 @@ import apiRoutes from './apiRoutes';
 import Express from 'express';
 import logger from 'morgan';
 import ejs from 'ejs';
+import favicon from 'serve-favicon';
 
 // enable SSR
 import React from 'react';
@@ -22,6 +23,7 @@ const store = createStore();
 
 
 const app = Express();
+app.use(favicon(path.join(__dirname, '../static/favicon.ico')))
 
 let viewPath = path.join(__dirname, '../dist/client');
 

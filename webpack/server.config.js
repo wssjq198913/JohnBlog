@@ -33,16 +33,17 @@ module.exports = {
               localIdentName: '[hash:base64:8]'
             }
           },
-          'sass-loader'
-        ]
+            'sass-loader'
+          ]
         })
       },
     ]
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: 'ecosystem.json'},
-      { from: 'Blogs', to: 'Blogs'}
+      { from: 'ecosystem.json' },
+      { from: 'Blogs', to: 'Blogs' },
+      { from: 'static/favicon.ico', to: 'favicon.ico' }
     ]),
     new extractTextPlugin({
       filename: 'CSSFORSSR'
