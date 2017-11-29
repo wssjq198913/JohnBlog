@@ -35,8 +35,16 @@ app.set('view engine', 'ejs');
 app.engine('.ejs', ejs.__express);
 
 console.log('>>>MPP process.env.NODE_ENV = ', process.env.NODE_ENV);
-
-app.use(Express.static(path.join(__dirname, '../client'), {maxage: 86400}));
+var options = {
+  dotfiles: 'ignore',
+  index: false,
+  maxAge: '1d',
+  redirect: false,
+  setHeaders: function (res, path, stat) {
+    res.set('x-timestamp', Date.now())
+  }
+}
+app.use(Express.static(path.join(__dirname, '../client'), options));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
