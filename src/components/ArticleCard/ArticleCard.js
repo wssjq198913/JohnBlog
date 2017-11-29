@@ -5,12 +5,17 @@ export default class ArticleCard extends Component {
     constructor(...props) {
         super(...props);
     }
+    componentDidMount() {
+        const imgRandomNumber = Math.ceil(Math.random() * 11).toString().padStart(2, '0');
+        const img = require(`../../../static/card-background/${imgRandomNumber}.jpg`);
+        this.articleHeader.setAttribute('data-src', img)
+    }
 
     render() {
 
         return (
             <article className={styles['article-card']}>
-                <header onClick={() => this.props.gotoDetail(this.props.date, this.props.title)}>
+                <header className='lazy' onClick={() => this.props.gotoDetail(this.props.date, this.props.title)} ref={a => this.articleHeader = a}>
                     <p>{this.props.title}</p>
                 </header>
                 <section>{this.props.shortDescription}</section>

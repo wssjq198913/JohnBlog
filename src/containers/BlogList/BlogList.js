@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
+import 'jquery-lazy';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
@@ -13,6 +15,10 @@ class BlogList extends Component {
   componentDidMount() {
     if(this.props.blogs == null || this.props.blogs.length == 0){
       this.props.load();
+    }
+    if (__CLIENT__) {
+      require('jquery-lazy');
+      $('.lazy').lazy();
     }
   }
 

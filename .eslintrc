@@ -10,6 +10,7 @@
         "window": false,
         "global": false,
         "__DEVELOPMENT__": true,
+        "__CLIENT__": true,
         "module": false
     },
     "plugins": [

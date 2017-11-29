@@ -35,7 +35,9 @@ var plugins = [
       HOST: JSON.stringify(process.env.HOST),
       PORT: JSON.stringify(process.env.PORT)
     },
-    __DEVELOPMENT__: isDevelopment
+    __DEVELOPMENT__: isDevelopment,
+    __SERVER__: false,
+    __CLIENT__: true
   })
 ]
 

@@ -1,4 +1,4 @@
 {
     "verbose": true,
-    "ignore": ["package.json", "nodemon.json", "specs/", "Blogs/"]
+    "ignore": ["package.json", "nodemon.json", "specs/", "Blogs/", "src/", "static/", "dist/"]
 }
