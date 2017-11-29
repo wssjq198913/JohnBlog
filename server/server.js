@@ -36,13 +36,7 @@ app.engine('.ejs', ejs.__express);
 
 console.log('>>>MPP process.env.NODE_ENV = ', process.env.NODE_ENV);
 var options = {
-  dotfiles: 'ignore',
-  index: false,
-  maxAge: '1d',
-  redirect: false,
-  setHeaders: function (res, path, stat) {
-    res.set('x-timestamp', Date.now())
-  }
+  maxAge: '1d'
 }
 app.use(Express.static(path.join(__dirname, '../client'), options));
 app.use(logger('dev'));
