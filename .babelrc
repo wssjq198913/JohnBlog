@@ -4,5 +4,5 @@
         "env",
         "stage-3"
     ],
-    "plugins": ["transform-export-extensions"]
+    "plugins": ["transform-export-extensions", "react-hot-loader/babel"]
 }

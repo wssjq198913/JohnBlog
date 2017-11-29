@@ -62,7 +62,7 @@ module.exports = {
   context: path.resolve(__dirname, '..'),
   entry: {
     vendor: ['babel-polyfill', 'react', 'react-dom', 'react-router', 'redux', 'react-redux', 'redux-saga', 'lodash', 'react-helmet'],
-    main: isDevelopment ? ['./src/index', 'webpack-hot-middleware/client?reload=true'] : ['./src/index']
+    main: isDevelopment ? [ 'react-hot-loader/patch', './src/index', 'webpack-hot-middleware/client?reload=true'] : ['./src/index']
   },
   output: {
     path: assetsPath,
