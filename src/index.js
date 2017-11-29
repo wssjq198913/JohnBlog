@@ -36,3 +36,18 @@ if (module.hot) {
     renderApp(newRoutes);
   });
 }
+
+if (module.hot) {
+  // remove the annoying error when 'You cannot change <Router routes>' in HMR.
+  // this is just a workaround.
+
+  const orgError = console.error;
+  console.error = (...args) => {
+    if (args && args.length === 1  && args[0].indexOf('You cannot change <Router routes>;') > -1) {
+      // React route changed
+    } else {
+      // Log the error as normally
+      orgError.apply(console, args);
+    }
+  };
+}
