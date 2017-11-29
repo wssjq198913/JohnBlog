@@ -36,7 +36,15 @@ app.engine('.ejs', ejs.__express);
 
 console.log('>>>MPP process.env.NODE_ENV = ', process.env.NODE_ENV);
 
-app.use(Express.static(path.join(__dirname, '../client')));
+app.use(Express.static(path.join(__dirname, '../client')), (req, res, next) => {
+  if(req.url.indexOf('.jpg') >= 0) {
+    res.header('Cache-Control', 'private, max-age=172800');
+  }
+  if(req.url.indexOf('.js') >= 0 || req.url.indexOf('.css') >= 0) {
+    res.header('Cache-Control', 'private, max-age=86400');
+  }
+  next();
+});
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
