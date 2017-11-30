@@ -1,4 +1,4 @@
-import { LOAD_BLOGS, LOAD_BLOGS_SUCCESS, LOAD_BLOG_DETAIL, LOAD_BLOG_DETAIL_SUCCESS } from '../actions';
+import { LOAD_BLOGS, LOAD_BLOGS_SUCCESS, LOAD_BLOG_DETAIL, LOAD_BLOG_DETAIL_SUCCESS, CLEAN_BLOG_DETAIL } from '../actions';
 const initialState = {
     blogs: [],
     detail: {
@@ -43,6 +43,17 @@ function reducers(state = initialState, action = {}) {
                         }
                     };
                 }
+            case CLEAN_BLOG_DETAIL:
+            {
+                return {
+                    ...state,
+                    detail: {
+                        content: null,
+                        date: null,
+                        topic: null
+                    },
+                }
+            }
         default:
             return state;
     }

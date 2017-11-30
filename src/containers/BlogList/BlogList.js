@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Navbar, ArticleCard, Burger, GoTop } from '../../components';
-import { loadBlogs } from '../../actions';
+import { loadBlogs, cleanBlogDetail } from '../../actions';
 
 class BlogList extends Component {
   constructor(...props) {
@@ -14,10 +14,10 @@ class BlogList extends Component {
     if(this.props.blogs == null || this.props.blogs.length == 0){
       this.props.load();
     }
-    console.log(__CLIENT__);
+    this.props.cleanBlogDetail();
     if (__CLIENT__) {
       require('jquery-lazy');
-      $('.lazy').lazy();
+      $('.lazy').lazy({bind: 'event'});
     }
   }
 
@@ -59,6 +59,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     gotoDetail: (date, title) => {
       dispatch(push(`blogs/${date}/${title}`));
+    },
+    cleanBlogDetail: () => {
+      dispatch(cleanBlogDetail());
     }
   }
 };

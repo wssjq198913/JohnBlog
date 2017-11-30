@@ -31,7 +31,9 @@ class BlogDetail extends Component {
         <GoTop />
         <Navbar />
         <Burger click={(e) => this.props.showMenu(e)} />
+        { this.props.loading ? <div>loading</div> :
         <article className={style.article} dangerouslySetInnerHTML={{__html: this.props.content}}></article>
+        }
       </div>
     );
   }
@@ -49,7 +51,8 @@ BlogDetail.propTypes = {
 const mapStateToProps = (state) => ({
   content: state.reducers.detail.content == null ? '' : marked(state.reducers.detail.content),
   date: state.reducers.detail.date,
-  topic: state.reducers.detail.topic
+  topic: state.reducers.detail.topic,
+  loading: state.reducers.loading
 });
 
 const mapDispatchToProps = (dispatch) => {
