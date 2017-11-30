@@ -22,8 +22,7 @@ const store = createStore();
 
 const app = Express();
 app.get('*.js', function (req, res, next) {
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
+  res.header('Content-Encoding', 'gzip');
   next();
 });
 app.use(favicon(path.join(__dirname, 'favicon.ico')))
