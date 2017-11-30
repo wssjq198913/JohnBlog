@@ -23,7 +23,8 @@ var plugins = [
     filename: isDevelopment ? '[name].css' : '[name].[hash].css',
   }),
   new compressionPlugin({
-    asset: '[path].gz[query]',
+    // it overrides existing js, this is what we want, same name, but new file is gzipped.
+    asset: '[path]',
     algorithm: "gzip",
     test: /\.js$/,
   }),

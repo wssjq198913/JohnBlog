@@ -41,8 +41,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.get('*.js', function (req, res, next) {
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
+  res.header('Content-Encoding', 'gzip');
   next();
 });
 app.use(Express.static(path.join(__dirname, '../dist/client')), (req, res, next) => {
