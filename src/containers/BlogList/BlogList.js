@@ -11,6 +11,7 @@ class BlogList extends Component {
     super(...props);
   }
   componentDidMount() {
+    $('body').removeClass('menu-collapsed');
     if(this.props.blogs == null || this.props.blogs.length == 0){
       this.props.load();
     }
