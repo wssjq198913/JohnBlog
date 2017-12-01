@@ -40,8 +40,11 @@
     },
     "build-server-uat": {
       "command": "webpack --colors --display-error-details --config webpack/server.config.js",
-      "HOST": "http://120.92.133.3",
-      "PORT": 80
+      "env": {
+        "NODE_ENV": "uat",
+        "HOST": "http://120.92.133.3",
+        "PORT": 80
+      }
     },
     "start-uat": {
       "command": "node ./dist/server/server.js",

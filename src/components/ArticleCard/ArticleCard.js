@@ -13,7 +13,6 @@ export default class ArticleCard extends Component {
     }
 
     render() {
-        console.log('1111111111', process.env.HOST);
         console.log(head);
         return (
             <div className='row'>

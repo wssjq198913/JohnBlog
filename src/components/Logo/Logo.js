@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Logo.scss';
-// import head from '../../../static/head.jpg';
+import head from '../../../static/head.jpg';
 
 export default class Logo extends Component {
     constructor(...props) {
@@ -14,7 +14,7 @@ export default class Logo extends Component {
                     <div className={`${styles['logo-left']}`}>
                         <header></header>
                         <footer>
-                            {/* <img src={head}/> */}
+                            <img src={head}/>
                             <div>Johnny</div>
                         </footer>
                     </div>

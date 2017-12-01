@@ -5,8 +5,6 @@ var extractTextPlugin = require('extract-text-webpack-plugin');
 var nodeExternals = require('webpack-node-externals');
 var isDevelopment = process.env.NODE_ENV === 'development';
 
-console.log('2222222', process.env.HOST);
-
 module.exports = {
   entry: {
     app: isDevelopment ? './bin/devServer.js' : './bin/server.js'
