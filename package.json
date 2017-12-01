@@ -34,14 +34,14 @@
       "command": "webpack --colors --display-error-details --config webpack/client.config.js",
       "env": {
         "NODE_ENV": "uat",
-        "HOST": "http://localhost",
-        "PORT": 4050
+        "HOST": "http://120.92.133.3",
+        "PORT": 80
       }
     },
     "build-server-uat": {
       "command": "webpack --colors --display-error-details --config webpack/server.config.js",
-      "HOST": "http://localhost",
-      "PORT": 4050
+      "HOST": "http://120.92.133.3",
+      "PORT": 80
     },
     "start-uat": {
       "command": "node ./dist/server/server.js",
