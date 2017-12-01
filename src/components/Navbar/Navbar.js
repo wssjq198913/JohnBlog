@@ -27,7 +27,7 @@ export default class Navbar extends Component {
                         <a>主页</a>
                     </li>
                     <li className={`${styles['has-sub']} collapsed`} data-toggle="collapse" data-target="#category"><span style={{'marginRight': '32px'}} className='glyphicon glyphicon-file'></span>分类</li>
-                    <ul class="collapse" id="category">
+                    <ul className="collapse" id="category">
                         <li>
                             <a>JavaScript</a>
                         </li>

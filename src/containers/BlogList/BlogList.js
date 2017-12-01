@@ -3,7 +3,7 @@ import $ from 'jquery';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { Navbar, ArticleCard, Burger, GoTop } from '../../components';
+import { Navbar, ArticleCard, Burger, GoTop, Logo } from '../../components';
 import { loadBlogs, cleanBlogDetail } from '../../actions';
 
 class BlogList extends Component {
@@ -29,6 +29,7 @@ class BlogList extends Component {
         <Navbar />
         <Burger click={(e) => this.props.showMenu(e)} />
         <section className='container'>
+          <Logo />
           {
             this.props.blogs.map((item, index) => {
               return <ArticleCard key={index} {...item} gotoDetail={this.props.gotoDetail}/>;

@@ -8,8 +8,8 @@ var extractTextPlugin = require('extract-text-webpack-plugin');
 var compressionPlugin = require("compression-webpack-plugin");
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var projectRootPath = path.resolve(__dirname, '../');
-var assetsPath = path.resolve(__dirname, '../dist/client');
 var isDevelopment = process.env.NODE_ENV === 'development';
+var assetsPath = path.resolve(__dirname, isDevelopment ? '../../dist/client' : '../dist/client');
 
 var plugins = [
   new htmlWebpackPlugin({
@@ -60,7 +60,6 @@ else {
 
 module.exports = {
   devtool: isDevelopment ? 'source-map' : false,
-  context: path.resolve(__dirname, '..'),
   entry: {
     vendor: ['babel-polyfill', 'react', 'react-dom', 'react-router', 'redux', 'react-redux', 'redux-saga', 'lodash', 'react-helmet'],
     main: isDevelopment ? [ 'react-hot-loader/patch', './src/index', 'webpack-hot-middleware/client?reload=true'] : ['./src/index']
@@ -93,7 +92,8 @@ module.exports = {
             options: {
               sourceMap: isDevelopment,
               modules: true,
-              localIdentName: '[hash:base64:8]'
+              context: '',
+              localIdentName: '[hash:base64]'
             }
           },
           {

@@ -22,9 +22,9 @@ const store = createStore();
 
 
 const app = Express();
-app.use(favicon(path.join(__dirname, '../static/favicon.ico')))
+app.use(favicon(path.join(__dirname, '../../static/favicon.ico')))
 
-let viewPath = path.join(__dirname, '../dist/client');
+let viewPath = path.join(__dirname, '../client');
 
 app.set('views', viewPath);
 app.set('view engine', 'ejs');

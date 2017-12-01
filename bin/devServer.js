@@ -1,10 +1,10 @@
 import http from 'http';
 import config from '../server/config';
-import hook from 'css-modules-require-hook';
-hook({
-  extensions: ['.scss', '.css'],
-  generateScopedName: '[hash:base64:8]',
-});
+// import hook from 'css-modules-require-hook';
+// hook({
+//   extensions: ['.scss', '.css'],
+//   generateScopedName: '[hash:base64:8]',
+// });
 
 const app = require('../server/devServer').default;
 

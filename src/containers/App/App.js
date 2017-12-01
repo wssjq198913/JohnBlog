@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import nprogress from 'nprogress';
 import style from './App.scss';
-import 'nprogress/nprogress.css';
+if (__CLIENT__) {
+  require('nprogress/nprogress.css');
+}
 
 class App extends Component {
   showMenu(event) {
@@ -13,7 +14,7 @@ class App extends Component {
   hideMenu() {
     document.body.className = '';
   }
-  componentDidMount(){
+  componentDidMount() {
     document.addEventListener('DOMContentLoaded', () => {
       nprogress.start();
     })

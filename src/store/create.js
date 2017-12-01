@@ -18,7 +18,7 @@ export default function createStore(preloadedState) {
 
   middleware.push(sagaMiddleware);
 
-  if (process.env.NODE_ENV == 'development') {
+  if (process.env.NODE_ENV == 'development' && __CLIENT__) {
     middleware.push(createLogger());
 
     enhancedCompose =

@@ -3,9 +3,9 @@
   left: 0;
   position: fixed;
   height: 100vh;
-  width: 260px;
+  width: 280px;
   background-color: rgb(244, 247, 246);
-  transform: translateX(-260px);
+  transform: translateX(-280px);
   transition: transform .5s ease-in-out;
   z-index: 11;
   overflow-x: hidden;
@@ -24,8 +24,8 @@
 
   .navbar-img {
     height: 200px;
-    background-image: url("../../../static/navbar.jpg");
-    background-size: 260px 260px;
+    background-image: url("../../../static/navbar.png");
+    background-size: 280px 280px;
 
     div {
       height: 150px;
@@ -33,8 +33,9 @@
 
     p {
       padding-left: 25px;
-      color: black;
+      color: #e0e0e0;
       font-size: 14px;
+      font-weight: 400;
     }
   }
 
@@ -48,8 +49,11 @@
         background-color: #e0e0e0;
     }
 
-    ul li:hover {
+    ul {
+      background-color: #e0e0e0;
+      li:hover {
         background-color: #cecece !important;
+      }
     }
 
     li {

@@ -5,7 +5,8 @@
   "main": "bin/server.js",
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "npm run clean && nodemon --exec better-npm-run start-dev",
+    "build:dev": "better-npm-run build-dev && better-npm-run start-dev",
+    "dev": "npm run clean && nodemon --exec npm run build:dev",
     "build:uat": "npm run clean && better-npm-run build-client-uat && better-npm-run build-server-uat",
     "start:uat": "better-npm-run start-uat",
     "test": "better-npm-run test",
@@ -13,8 +14,16 @@
     "coverage": "better-npm-run coverage"
   },
   "betterScripts": {
+    "build-dev": {
+      "command": "webpack --colors --display-error-details --config webpack/server.config.js",
+      "env": {
+        "HOST": "http://localhost",
+        "PORT": 4050,
+        "NODE_ENV": "development"
+      }
+    },
     "start-dev": {
-      "command": "babel-node ./bin/devServer.js",
+      "command": "node ./dist/server/server.js",
       "env": {
         "HOST": "http://localhost",
         "PORT": 4050,
@@ -154,6 +163,7 @@
     "webpack": "^3.7.1",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.19.1"
+    "webpack-hot-middleware": "^2.19.1",
+    "webpack-node-externals": "^1.6.0"
   }
 }
