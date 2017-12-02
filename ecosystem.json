@@ -31,6 +31,7 @@
       "production": {
         "user": "root",
         "host": "45.77.248.142",
+        "ssh_options": "ForwardAgent=yes",
         "ref": "origin/production",
         "repo": "git@github.com:wssjq198913/JohnBlog-deploy.git",
         "path": "/root/www/johnblog",
