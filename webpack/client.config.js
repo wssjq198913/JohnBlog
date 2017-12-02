@@ -20,7 +20,7 @@ var plugins = [
   }),
   new htmlWebpackHarddiskPlugin(),
   new extractTextPlugin({
-    filename: isDevelopment ? '[name].css' : '[name].[hash].css',
+    filename: isDevelopment ? '[name].css' : '[name].[contenthash:8].css',
   }),
   new compressionPlugin({
     // it overrides existing js, this is what we want, same name, but new file is gzipped.
