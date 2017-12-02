@@ -26,6 +26,7 @@
         "ref": "origin/uat",
         "repo": "git@github.com:wssjq198913/JohnBlog-deploy.git",
         "path": "/root/www/johnblog",
+        "pre-deploy": "git pull",
         "post-deploy": "NODE_ENV=uat && pm2 startOrRestart server/ecosystem.json --env uat"
       },
       "production": {
@@ -35,6 +36,7 @@
         "ref": "origin/production",
         "repo": "git@github.com:wssjq198913/JohnBlog-deploy.git",
         "path": "/root/www/johnblog",
+        "pre-deploy": "git pull",
         "post-deploy": "source /etc/profile && NODE_ENV=production && pm2 startOrRestart server/ecosystem.json --env production"
       }
     }

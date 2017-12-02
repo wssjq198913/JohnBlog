@@ -31,7 +31,7 @@ class BlogDetail extends Component {
         <GoTop />
         <Navbar />
         <Burger click={(e) => this.props.showMenu(e)} />
-        { this.props.loading ? <div>Loading... please wait...</div> :
+        { this.props.loading ? <div>Loading... please wait for a while...</div> :
         <article className={style.article} dangerouslySetInnerHTML={{__html: this.props.content}}></article>
         }
       </div>
