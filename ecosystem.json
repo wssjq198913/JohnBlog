@@ -33,7 +33,7 @@
         "ref": "origin/production",
         "repo": "git@github.com:wssjq198913/JohnBlog-deploy.git",
         "path": "/root/www/johnblog",
-        "pre-setup": "eval \"$(ssh-agent -s)\" && ssh-add /root/.ssh/id_vultr",
+        "pre-setup": "eval \\"$(ssh-agent -s)"\\ && ssh-add /root/.ssh/id_vultr",
         "post-deploy": "NODE_ENV=production && pm2 startOrRestart server/ecosystem.json --env production"
       }
     }
