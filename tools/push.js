@@ -37,12 +37,12 @@ async function checkout(branch) {
 
 function branch() {
   if (process.env.NODE_ENV === 'production') {
-    return 'master';
+    return 'production';
   }
   if (process.env.NODE_ENV === 'uat') {
     return 'uat';
   }
-  return 'acceptance';
+  return 'production';
 }
 
 function environment() {
@@ -52,10 +52,7 @@ function environment() {
   if (process.env.NODE_ENV === 'uat') {
     return 'uat'
   }
-  // if (process.env.NODE_ENV === 'development') {
-  //   return 'development'
-  // }
-  return 'acceptance';
+  return 'production';
 }
 
 const remote = {
