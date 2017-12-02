@@ -4,11 +4,14 @@
   "description": "Johnny's Blog",
   "main": "bin/server.js",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist/*",
     "build:dev": "better-npm-run build-dev && better-npm-run start-dev",
     "dev": "npm run clean && nodemon --exec npm run build:dev",
     "build:uat": "npm run clean && better-npm-run build-client-uat && better-npm-run build-server-uat",
+    "build:production": "npm run clean && better-npm-run build-client-production && better-npm-run build-server-production",
     "start:uat": "better-npm-run start-uat",
+    "push:uat": "better-npm-run push-uat",
+    "push:production": "better-npm-run push-production",
     "test": "better-npm-run test",
     "test:watch": "better-npm-run test-watch",
     "coverage": "better-npm-run coverage"
@@ -49,8 +52,36 @@
     "start-uat": {
       "command": "node ./dist/server/server.js",
       "env": {
-        "PORT": 4050,
+        "PORT": 80,
         "NODE_ENV": "uat"
+      }
+    },
+    "build-client-production": {
+      "command": "webpack --colors --display-error-details --config webpack/client.config.js",
+      "env": {
+        "NODE_ENV": "production",
+        "HOST": "http://145.77.248.142",
+        "PORT": 80
+      }
+    },
+    "build-server-production": {
+      "command": "webpack --colors --display-error-details --config webpack/server.config.js",
+      "env": {
+        "NODE_ENV": "production",
+        "HOST": "http://45.77.248.142",
+        "PORT": 80
+      }
+    },
+    "push-uat": {
+      "command": "babel-node tools/push",
+      "env": {
+        "NODE_ENV": "uat"
+      }
+    },
+    "push-production": {
+      "command": "babel-node tools/push",
+      "env": {
+        "NODE_ENV": "production"
       }
     },
     "test": {
@@ -137,6 +168,7 @@
     "better-npm-run": "^0.1.0",
     "chai": "^4.1.2",
     "chai-immutable": "^1.6.0",
+    "child_process": "^1.0.2",
     "compression-webpack-plugin": "^1.0.1",
     "copy-webpack-plugin": "^4.1.1",
     "css-hot-loader": "^1.3.2",
@@ -148,6 +180,7 @@
     "eslint-plugin-react": "^7.4.0",
     "extract-text-webpack-plugin": "^3.0.1",
     "file-loader": "^1.1.5",
+    "git-repository": "^0.1.4",
     "html-webpack-harddisk-plugin": "^0.1.0",
     "html-webpack-plugin": "^2.30.1",
     "immutable": "^3.8.2",

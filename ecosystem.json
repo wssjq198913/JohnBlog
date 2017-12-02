@@ -10,7 +10,30 @@
           "NODE_ENV": "uat",
           "HOST": "http://120.92.133.3",
           "PORT": 80
+        },
+        "env_production" : {
+          "NODE_ENV": "uat",
+          "HOST": "45.77.248.142",
+          "PORT": 80
         }
       }
-    ]
+    ],
+    "deploy": {
+      "uat": {
+        "user": "root",
+        "host": "120.92.133.3",
+        "ref": "origin/uat",
+        "repo": "git@github.com:wssjq198913/JohnBlog-deploy.git",
+        "path": "/root/www/johnblog",
+        "post-deploy": "NODE_ENV=uat && pm2 startOrRestart server/ecosystem.json --env uat"
+      },
+      "production": {
+        "user": "root",
+        "host": "45.77.248.142",
+        "ref": "origin/production",
+        "repo": "git@github.com:wssjq198913/JohnBlog-deploy.git",
+        "path": "/root/www/johnblog",
+        "post-deploy": "NODE_ENV=production && pm2 startOrRestart server/ecosystem.json --env production"
+      }
+    }
   }
