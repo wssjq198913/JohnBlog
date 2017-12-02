@@ -7,19 +7,6 @@ import logger from 'morgan';
 import ejs from 'ejs';
 import favicon from 'serve-favicon';
 
-// enable SSR
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { Provider } from 'react-redux';
-import { match, RouterContext } from 'react-router';
-import { END } from 'redux-saga';
-import routes from '../src/routes';
-import createStore from '../src/store/create';
-import rootSagas from '../src/sagas';
-
-const store = createStore();
-// enable SSR
-
 const app = Express();
 app.get('*.js', function (req, res, next) {
   res.header('Content-Encoding', 'gzip');
@@ -77,41 +64,14 @@ if (__DEVELOPMENT__) {
 
 app.use('/api', apiRoutes);
 
-app.get('*', (req, res) => {
-  console.log(req.url);
-  try {
-    match({ routes: routes, location: req.url }, (err, redirect, props) => {
-      if (err) {
-        res.status(500).send(err.message)
-      } else if (redirect) {
-        res.redirect(redirect.pathname + redirect.search)
-      } else if (props && props.components) {
-        const rootTask = store.runSaga(rootSagas);
-        for(let component of props.components){
-          if (component.InitialAction) {
-            if (component.InitialAction().type === 'LOAD_BLOG_DETAIL') {
-              store.dispatch(component.InitialAction(`${props.params.year}/${props.params.month}/${props.params.day}`, props.params.topic));
-            }
-            store.dispatch(component.InitialAction());
-          }
-        }
-        store.dispatch(END);
-        rootTask.done.then(()=>{
-          const initialData = store.getState();
-          const markup = renderToString(
-            <Provider store={store}>
-              <RouterContext {...props} />
-            </Provider>
-          );
-          res.render('index', { title: `Johnny's blog`, markup: markup, initialData: JSON.stringify(initialData) });
-        });
-      }
-    })
-  }
-  catch (err) {
-    console.log(err);
-  }
-});
+var pageRoute = (req, res) => {
+  res.render('index', { title: 'Johnny\'s blog', markup: '', initialData: JSON.stringify('') });
+}
+if (__ENABLESSR__) {
+  // enable server side rendering
+  pageRoute = require('./ssr').default;
+}
+app.get('*', pageRoute);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { Navbar, ArticleCard, Burger, GoTop, Logo } from '../../components';
@@ -16,10 +15,6 @@ class BlogList extends Component {
       this.props.load();
     }
     this.props.cleanBlogDetail();
-    if (__CLIENT__) {
-      require('jquery-lazy');
-      $('.lazy').lazy({bind: 'event'});
-    }
   }
 
   render() {

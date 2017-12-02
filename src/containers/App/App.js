@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 import { connect } from 'react-redux';
 import nprogress from 'nprogress';
 import style from './App.scss';
@@ -20,6 +21,10 @@ class App extends Component {
     })
     window.addEventListener('load', () => {
       nprogress.done();
+      if (__CLIENT__) {
+        require('jquery-lazy');
+        $('.lazy').lazy({bind: 'event'});
+      }
     })
   }
   render() {
