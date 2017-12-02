@@ -25,7 +25,7 @@ app.get('*.js', function (req, res, next) {
   res.header('Content-Encoding', 'gzip');
   next();
 });
-app.use(favicon(path.join(__dirname, 'favicon.ico')))
+app.use(favicon(path.join(__dirname, __DEVELOPMENT__ ? '../../static/favicon.ico' : 'favicon.ico')))
 
 let viewPath = path.join(__dirname, '../client');
 
@@ -33,7 +33,7 @@ app.set('views', viewPath);
 app.set('view engine', 'ejs');
 app.engine('.ejs', ejs.__express);
 
-console.log('>>>MPP process.env.NODE_ENV = ', process.env.NODE_ENV);
+console.log('>>>JohnBlog process.env.NODE_ENV = ', process.env.NODE_ENV);
 var options = {
   maxAge: '1d'
 }
@@ -56,6 +56,24 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+if (__DEVELOPMENT__) {
+  var webpack = require('webpack');
+  var webpackConfig = require('../webpack/client.config.js');
+  var webpackDevMiddleware = require('webpack-dev-middleware');
+  var webpackHotMiddleware = require('webpack-hot-middleware');
+  var compiler = webpack(webpackConfig);
+
+  app.use(webpackDevMiddleware(compiler, {
+    // noInfo: true,
+    stats: {
+      colors: true
+    }
+  }));
+  // enable hot-reload and state-preserving
+  // compilation error display
+  app.use(webpackHotMiddleware(compiler));
+}
 
 app.use('/api', apiRoutes);
 

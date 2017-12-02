@@ -7,7 +7,7 @@ var isDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = {
   entry: {
-    app: isDevelopment ? './bin/devServer.js' : './bin/server.js'
+    app: './bin/server.js'
   },
   target: 'node',
   node: {
@@ -54,6 +54,7 @@ module.exports = {
       filename: 'CSSFORSSR'
     }),
     new webpack.DefinePlugin({
+      __DEVELOPMENT__: isDevelopment,
       __SERVER__: true,
       __CLIENT__: false
     })

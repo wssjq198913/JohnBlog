@@ -13,7 +13,6 @@ export default class ArticleCard extends Component {
     }
 
     render() {
-        console.log(head);
         return (
             <div className='row'>
                 <article className='col-xs-12'>
