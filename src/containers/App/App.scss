@@ -1,3 +1,5 @@
+@import '../../theme/variables.scss';
+
 *,
 :after,
 :before {
@@ -25,10 +27,14 @@ body {
 }
 
 :global(.container) {
-  width: 900px;
-  margin: 0 auto;
-  padding-top: 200px;
   min-height: 600px;
+  padding-top: 150px;
+  margin-bottom: 50px;
+
+  @include respond-to(computer) {
+    width: 900px;
+    margin: 0 auto 50px auto;
+  }
 }
 
 :global(.container:before) {

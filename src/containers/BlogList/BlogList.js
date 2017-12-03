@@ -10,6 +10,7 @@ class BlogList extends Component {
     super(...props);
   }
   componentDidMount() {
+    $(window).scrollTop(0);
     $('body').removeClass('menu-collapsed');
     if(this.props.blogs == null || this.props.blogs.length == 0){
       this.props.load();
@@ -17,6 +18,7 @@ class BlogList extends Component {
     this.props.cleanBlogDetail();
     if (__CLIENT__) {
       window.setTimeout(() => {
+        $(window).scrollTop(0);
         require('jquery-lazy');
         $('.lazy').lazy({bind: 'event'});
         

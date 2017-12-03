@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 // import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import marked from 'marked';
@@ -19,6 +20,9 @@ marked.setOptions({
 
 class BlogDetail extends Component {
   componentDidMount() {
+    window.setTimeout(() => {
+      $(window).scrollTop(0);
+    }, 0);
     if (this.props.content == null || 
       this.props.content == '' || 
       this.props.topic != this.props.params.topic) {
@@ -31,6 +35,9 @@ class BlogDetail extends Component {
         <GoTop />
         <Navbar />
         <Burger click={(e) => this.props.showMenu(e)} />
+        <header className={style['article-header']}>
+        {this.props.params.topic}
+        </header>
         { this.props.loading ? <div>Loading... please wait for a while...</div> :
         <article className={style.article} dangerouslySetInnerHTML={{__html: this.props.content}}></article>
         }
