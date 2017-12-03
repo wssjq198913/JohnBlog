@@ -29,11 +29,14 @@ body {
 :global(.container) {
   min-height: 600px;
   padding-top: 150px;
-  margin-bottom: 50px;
+  margin-bottom: 300px;
 
   @include respond-to(computer) {
     width: 900px;
     margin: 0 auto 50px auto;
+  }
+  @include respond-to(phone) {
+    padding-top: 0;
   }
 }
 

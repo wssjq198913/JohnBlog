@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import marked from 'marked';
 import { loadBlogDetail } from '../../actions';
 import { Navbar, Burger, GoTop } from '../../components/index';
-import style from './BlogDetail.scss'; 
+import style from './BlogDetail.scss';
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -21,8 +21,8 @@ marked.setOptions({
 class BlogDetail extends Component {
   componentDidMount() {
     $('html').scrollTop(0);
-    if (this.props.content == null || 
-      this.props.content == '' || 
+    if (this.props.content == null ||
+      this.props.content == '' ||
       this.props.topic != this.props.params.topic) {
       this.props.load(`${this.props.params.year}/${this.props.params.month}/${this.props.params.day}`, this.props.params.topic);
     }
@@ -33,12 +33,14 @@ class BlogDetail extends Component {
         <GoTop />
         <Navbar />
         <Burger click={(e) => this.props.showMenu(e)} />
-        <header className={style['article-header']}>
-        {this.props.params.topic}
-        </header>
-        { this.props.loading ? <div>Loading... please wait for a while...</div> :
-        <article className={style.article} dangerouslySetInnerHTML={{__html: this.props.content}}></article>
-        }
+        <div className='row'>
+          <header className={style['article-header']}>
+            {this.props.params.topic}
+          </header>
+          {this.props.loading ? <div>Loading... please wait for a while...</div> :
+            <article className={style.article} dangerouslySetInnerHTML={{ __html: this.props.content }}></article>
+          }
+        </div>
       </div>
     );
   }
@@ -50,7 +52,7 @@ BlogDetail.InitialAction = (date, topic) => {
 
 // Define PropTypes
 BlogDetail.propTypes = {
-  
+
 };
 
 const mapStateToProps = (state) => ({

@@ -7,9 +7,9 @@ export default class ArticleCard extends Component {
         super(...props);
     }
     componentDidMount() {
-        const imgRandomNumber = Math.ceil(Math.random() * 11).toString().padStart(2, '0');
-        const img = require(`../../../static/card-background/${imgRandomNumber}.jpg`);
-        this.articleHeader.setAttribute('data-src', img)
+        // const imgRandomNumber = Math.ceil(Math.random() * 11).toString().padStart(2, '0');
+        // const img = require(`../../../static/card-background/${imgRandomNumber}.jpg`);
+        // this.articleHeader.setAttribute('data-src', img)
     }
 
     render() {
