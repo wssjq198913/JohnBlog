@@ -1,6 +1,7 @@
 import fetch from 'isomorphic-fetch';
 if (__CLIENT__) {
     var nprogress = require('nprogress');
+    nprogress.configure({ trickleRate: 0.1, trickleSpeed: 500 });
 }
 
 export default async function apiClient(url, method, data) {
