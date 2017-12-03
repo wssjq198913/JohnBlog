@@ -20,9 +20,7 @@ marked.setOptions({
 
 class BlogDetail extends Component {
   componentDidMount() {
-    window.setTimeout(() => {
-      $(window).scrollTop(0);
-    }, 0);
+    $('html').scrollTop(0);
     if (this.props.content == null || 
       this.props.content == '' || 
       this.props.topic != this.props.params.topic) {
