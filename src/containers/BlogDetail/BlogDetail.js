@@ -30,17 +30,20 @@ class BlogDetail extends Component {
   render() {
     return (
       <div className='container'>
-        <GoTop />
-        <Navbar />
-        <Burger click={(e) => this.props.showMenu(e)} />
-        <div className='row'>
-          <header className={style['article-header']}>
-            {this.props.params.topic}
-          </header>
-          {this.props.loading ? <div>Loading... please wait for a while...</div> :
-            <article className={style.article} dangerouslySetInnerHTML={{ __html: this.props.content }}></article>
-          }
-        </div>
+        {
+          this.props.loading ? <div></div> :
+          <div>
+            <GoTop />
+            <Navbar />
+            <Burger click={(e) => this.props.showMenu(e)} />
+            <div className='row'>
+              <header className={style['article-header']}>
+                {this.props.params.topic}
+              </header>
+              <article className={style.article} dangerouslySetInnerHTML={{ __html: this.props.content }}></article>
+            </div>
+          </div>
+        }
       </div>
     );
   }
