@@ -15,6 +15,13 @@ class BlogList extends Component {
       this.props.load();
     }
     this.props.cleanBlogDetail();
+    if (__CLIENT__) {
+      window.setTimeout(() => {
+        require('jquery-lazy');
+        $('.lazy').lazy({bind: 'event'});
+        
+      }, 0);
+    }
   }
 
   render() {
