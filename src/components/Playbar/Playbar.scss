@@ -1,0 +1,80 @@
+@import '../../theme/variables.scss';
+
+.playbar .pre, .playbar .next, .playbar .left,
+.playbar .lock-section, .playbar .lock, .playbar .fill {
+    background: url('../../../static/playbar.png') no-repeat;
+}
+
+.playbar {
+    height: 53px;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    transform: translateY(45px);
+    transition: all .5s ease-in-out;
+    @include respond-to(phone) {
+        display: none;
+    }
+
+    &.locked {
+        transform: translateY(0);
+    }
+
+    &:hover {
+        transition: transform .2s ease-in-out;
+        transform: translateY(0);
+    }
+
+    .left {
+        background-position: 0 0;
+        background-repeat: repeat-x;
+        flex: auto;
+    }
+
+    .right {
+        background-position: 0 0;
+        flex: 0 0 67px;
+        background-repeat: repeat-x;
+        display: flex;
+        flex-direction: row;
+
+        .lock-section {
+            height: 67px;
+            margin-top: -14px;
+            flex: 0 0 52px;
+            background-position: 0 -380px;
+            position: relative;
+
+            .lock {
+                width: 15px;
+                height: 15px;
+                position: absolute;
+                left: 16px;
+                top: 6px;
+                background-position: -80px -380px;
+                cursor: pointer;
+
+                &:hover {
+                    background-position: -80px -400px;
+                }
+
+                &.locked {
+                    color: red;
+                    background-position: -100px -380px;
+
+                    &:hover {
+                        background-position: -100px -400px;
+                    }
+                }
+            }
+        }
+
+        .fill {
+            flex: 0 0 15px;
+            margin-top: -1px;
+            background-position: -52px -393px;
+        }
+    }
+}

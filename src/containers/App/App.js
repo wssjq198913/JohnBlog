@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import nprogress from 'nprogress';
+import { Playbar } from '../../components';
 import style from './App.scss';
 if (__CLIENT__) {
   require('nprogress/nprogress.css');
@@ -26,6 +27,7 @@ class App extends Component {
     return (
       <div className={style.app} onClick={() => this.hideMenu()} ref={(component) => { this.App = component; }}>
         {React.cloneElement(this.props.children, { showMenu: this.showMenu })}
+        <Playbar />
       </div>
     );
   }
