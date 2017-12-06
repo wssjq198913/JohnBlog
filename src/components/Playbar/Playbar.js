@@ -5,6 +5,7 @@ import styles from './Playbar.scss';
 import song from '../../../static/我要快乐.mp3';
 let cx = classNames.bind(styles);
 let tag = false;
+let mouseMoveType = null;
 const progressLenth = 490;
 export default class Playbar extends Component {
     constructor(...props) {
@@ -18,12 +19,16 @@ export default class Playbar extends Component {
     }
     componentDidMount() {
         $(document).on('mouseup', (event) => {
-            tag = false;
-            event.stopPropagation();
-            $('audio')[0].currentTime = this.state.progress * $('audio')[0].duration;
+            if (mouseMoveType == 'progress') {
+                tag = false;
+                event.stopPropagation();
+                $('audio')[0].currentTime = this.state.progress.substring(0,this.state.progress.length-1)/100 * $('audio')[0].duration;
+            }
+            mouseMoveType = null;
         })
         $(document).on('mousemove', (event) => {
             if (tag) {
+                mouseMoveType = 'progress';
                 let originalPageX = $(`.${styles['play-progress']}`).offset().left;
                 let progress = (event.pageX - originalPageX) / progressLenth;
                 if (event.pageX - originalPageX <= 0) {
