@@ -6,7 +6,7 @@ let cx = classNames.bind(styles);
 export default class Playbar extends Component {
     constructor(...props) {
         super(...props);
-        this.state = { locked: false };
+        this.state = { locked: true };
     }
     lockPlaybar() {
         this.setState({ locked: !this.state.locked });
@@ -23,7 +23,25 @@ export default class Playbar extends Component {
 
         return (
             <div className={playbarClass}>
-                <div className={styles.left}></div>
+                <div className={styles.left}>
+                    <div className={styles.wrap}>
+                        <div className={styles.btns}>
+                            <a className={styles.pre}></a>
+                            <a className={styles.play}></a>
+                            <a className={styles.next}></a>
+                        </div>
+                        <div className={styles['play-progress']}>
+                            <div className={styles.info}>
+                                <span className={styles.title}>我要快乐</span>
+                                <span className={styles.singer}>张惠妹</span>
+                            </div>
+                            <div className={styles.progress}>
+                                <span className={styles.dot}></span>
+                            </div>
+                            <div className={styles.time}></div>
+                        </div>
+                    </div>
+                </div>
                 <div className={styles.right}>
                     <div className={styles['lock-section']}>
                         <div onClick={() => this.lockPlaybar()} className={lockClass}></div>

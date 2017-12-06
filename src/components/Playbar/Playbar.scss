@@ -1,7 +1,7 @@
 @import '../../theme/variables.scss';
 
-.playbar .pre, .playbar .next, .playbar .left,
-.playbar .lock-section, .playbar .lock, .playbar .fill {
+.playbar .left, .playbar .lock-section, .playbar .lock, .playbar .fill,
+.playbar .pre, .playbar .play, .playbar .pause, .playbar .next {
     background: url('../../../static/playbar.png') no-repeat;
 }
 
@@ -31,6 +31,92 @@
         background-position: 0 0;
         background-repeat: repeat-x;
         flex: auto;
+        display: flex;
+        justify-content: center;
+
+        .wrap {
+            display: inline-block;
+            width: 700px;
+            height: 47px;
+            position: relative;
+            bottom: -6px;
+            padding-top: 3px;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+
+            .btns {
+                width: 137px;
+                display: inline-block;
+                display: flex;
+                align-items: center;
+
+                & .pre, & .next {
+                    width: 28px;
+                    height: 28px;
+                    display: inline-block;
+                    margin-right: 8px;
+                }
+
+                & .play, & .pause {
+                    width: 36px;
+                    height: 36px;
+                    display: inline-block;
+                    margin-right: 8px;
+                }
+
+                .pre {
+                    background-position: 0 -130px;
+                }
+                .play {
+                    width: 36px;
+                    width: 36px;
+                    background-position: 0 -204px;
+                }
+                .pause {}
+                .next {
+                    background-position: -80px -130px;
+                }
+            }
+
+            .play-progress {
+                width: 608px;
+                margin-top: -10px;
+
+                .info {
+                    height: 28px;
+                    width: 100%;
+
+                    .title {
+                        color: #e8e8e8;
+                        font-size: 12px;
+                    }
+                    .singer {
+                        margin-left: 20px;
+                        color: #9b9b9b;
+                        font-size: 12px;
+                    }
+                }
+                .progress {
+                    height: 9px;
+                    width: 493px;
+                    background: url('../../../static/statbar.png');
+                    background-position: right 0;
+                    position: relative;
+
+                    .dot {
+                        position: absolute;
+                        background: url('../../../static/iconall.png');
+                        background-position: 0 -250px;
+                        width: 22px;
+                        height: 24px;
+                        top: -7px;
+                        margin-left: -11px;
+                    }
+                }
+            }
+        }
     }
 
     .right {
