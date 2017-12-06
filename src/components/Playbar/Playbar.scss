@@ -85,6 +85,7 @@
                 margin-top: -10px;
 
                 .info {
+                    user-select:none;
                     height: 28px;
                     width: 100%;
 
@@ -106,6 +107,7 @@
                     position: relative;
 
                     .dot {
+                        cursor: pointer;
                         position: absolute;
                         background: url('../../../static/iconall.png');
                         background-position: 0 -250px;
