@@ -25,6 +25,7 @@ module.exports = {
       { test: /\.js$/, exclude: /node_modules/, use: 'babel-loader' },
       { test: /\.(png|jpg|jpeg|gif)$/, use: "url-loader?limit=10000" },
       { test: /\.css$/, use: "style-loader"},
+      { test: /\.(mp4|mp3)$/, use: 'file-loader' },
       {
         test: /\.scss$/,
         use: extractTextPlugin.extract({
