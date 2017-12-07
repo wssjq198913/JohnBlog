@@ -138,11 +138,20 @@
                         height: 24px;
                         top: -7px;
                         margin-left: -11px;
+                        z-index: 11;
                     }
 
                     .played {
                         background: url('../../../static/statbar.png');
                         background-position: left -66px;
+                        height: 9px;
+                        position: absolute;
+                        z-index: 10;
+                    }
+
+                    .buffered {
+                        background: url('../../../static/statbar.png');
+                        background-position: right -30px;
                         height: 9px;
                         position: absolute;
                     }

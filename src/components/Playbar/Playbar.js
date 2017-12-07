@@ -7,6 +7,7 @@ let cx = classNames.bind(styles);
 let tag = false;
 let mouseMoveType = null;
 const progressLenth = 490;
+let interval;
 export default class Playbar extends Component {
     constructor(...props) {
         super(...props);
@@ -16,7 +17,8 @@ export default class Playbar extends Component {
                 isRunning: false,
                 progress: 0,
                 duration: '00:00',
-                playedTime: '00:00'
+                playedTime: '00:00',
+                buffered: 0
             };
     }
     convert(value) {
@@ -28,7 +30,7 @@ export default class Playbar extends Component {
                 if (mouseMoveType == 'progress') {
                     tag = false;
                     event.stopPropagation();
-                    $('audio')[0].currentTime = this.state.progress.substring(0,this.state.progress.length-1)/100 * $('audio')[0].duration;
+                    $('audio')[0].currentTime = this.state.progress.substring(0, this.state.progress.length - 1) / 100 * $('audio')[0].duration;
                 }
                 mouseMoveType = null;
             })
@@ -46,19 +48,23 @@ export default class Playbar extends Component {
                     event.stopPropagation();
                 }
             })
-            let vid = $('audio')[0]; 
-            vid.src = song;
+            let vid = $('audio')[0];
             vid.onloadeddata = () => {
-                this.setState({ 'duration': this.convert(vid.duration)});
+                this.setState({ 'duration': this.convert(vid.duration) });
             }
 
-            vid.ontimeupdate = () => {
-                if (!tag) {
-                    this.setState({ 'progress': `${vid.currentTime / vid.duration * 100}%` });
-                    this.setState({ 'playedTime': this.convert(vid.currentTime) });
-                }
-    
-            };
+            vid.onended = () => {
+                window.clearInterval(interval);
+            }
+            vid.src = song;
+            // there's a issue with ontimeupdate, the time change is not smooth, so I decided to use setInterval
+            // vid.ontimeupdate = () => {
+            //     if (!tag) {
+            //         this.setState({ 'progress': `${vid.currentTime / vid.duration * 100}%` });
+            //         this.setState({ 'playedTime': this.convert(vid.currentTime) });
+            //     }
+
+            // };
         }, 0);
     }
     lockPlaybar() {
@@ -76,12 +82,22 @@ export default class Playbar extends Component {
         event.stopPropagation();
     }
     play() {
-        $('audio')[0].play();
+        let vid = $('audio')[0];
+        vid.play();
+
+        interval = window.setInterval(() => {
+            if (!tag) {
+                this.setState({ 'progress': `${vid.currentTime / vid.duration * 100}%` });
+                this.setState({ 'playedTime': this.convert(vid.currentTime) });
+                this.setState({ 'buffered': `${vid.buffered.end(0) / vid.duration * 100}%` });
+            }
+        }, 500);
         this.setState({ isRunning: true });
     }
     pause() {
         $('audio')[0].pause();
         this.setState({ isRunning: false });
+        window.clearInterval(interval);
     }
     render() {
         let lockClass = cx({
@@ -110,6 +126,7 @@ export default class Playbar extends Component {
                             </div>
                             <div onClick={(e) => this.clickProgressBar(e)} className={styles.progress}>
                                 <div style={{ 'width': this.state.progress }} className={styles.played}></div>
+                                <div style={{ 'width': this.state.buffered }} className={styles.buffered}></div>
                                 <span style={{ 'left': this.state.progress }} onMouseDown={(e) => this.progressMoveStart(e)} className={styles.dot}></span>
                                 <span className={styles.time}>
                                     <span className={styles['played-time']}>{this.state.playedTime}</span>/
