@@ -108,7 +108,7 @@
 
                 .info {
                     user-select:none;
-                    height: 28px;
+                    height: 19px;
                     width: 100%;
 
                     .title {
@@ -127,6 +127,7 @@
                     background: url('../../../static/statbar.png');
                     background-position: right 0;
                     position: relative;
+                    display: inline-block;
 
                     .dot {
                         cursor: pointer;
@@ -144,6 +145,19 @@
                         background-position: left -66px;
                         height: 9px;
                         position: absolute;
+                    }
+                }
+
+                .time {
+                    position: absolute;
+                    color: #797979;
+                    text-shadow: 0 1px 0 #121212;
+                    font-size: 12px;
+                    right: -80px;
+                    top: -6px;
+
+                    .played-time {
+                        color: #a1a1a1;
                     }
                 }
             }

@@ -14,39 +14,52 @@ export default class Playbar extends Component {
             {
                 locked: true,
                 isRunning: false,
-                progress: 0
+                progress: 0,
+                duration: '00:00',
+                playedTime: '00:00'
             };
     }
+    convert(value) {
+        return Math.floor(value / 60).toString().padStart(2, '0') + ':' + Math.round(value % 60 ? value % 60 : '00').toString().padStart(2, '0')
+    }
     componentDidMount() {
-        $(document).on('mouseup', (event) => {
-            if (mouseMoveType == 'progress') {
-                tag = false;
-                event.stopPropagation();
-                $('audio')[0].currentTime = this.state.progress.substring(0,this.state.progress.length-1)/100 * $('audio')[0].duration;
-            }
-            mouseMoveType = null;
-        })
-        $(document).on('mousemove', (event) => {
-            if (tag) {
-                mouseMoveType = 'progress';
-                let originalPageX = $(`.${styles['play-progress']}`).offset().left;
-                let progress = (event.pageX - originalPageX) / progressLenth;
-                if (event.pageX - originalPageX <= 0) {
-                    progress = 0;
-                } else if (event.pageX - originalPageX > progressLenth) {
-                    progress = 100 / progressLenth;
+        window.setTimeout(() => {
+            $(document).on('mouseup', (event) => {
+                if (mouseMoveType == 'progress') {
+                    tag = false;
+                    event.stopPropagation();
+                    $('audio')[0].currentTime = this.state.progress.substring(0,this.state.progress.length-1)/100 * $('audio')[0].duration;
                 }
-                this.setState({ 'progress': `${progress * 100}%` });
-                event.stopPropagation();
-            }
-        })
-        let vid = $('audio')[0];
-        vid.ontimeupdate = () => {
-            if (!tag) {
-                this.setState({ 'progress': `${vid.currentTime / vid.duration * 100}%` });
+                mouseMoveType = null;
+            })
+            $(document).on('mousemove', (event) => {
+                if (tag) {
+                    mouseMoveType = 'progress';
+                    let originalPageX = $(`.${styles['play-progress']}`).offset().left;
+                    let progress = (event.pageX - originalPageX) / progressLenth;
+                    if (event.pageX - originalPageX <= 0) {
+                        progress = 0;
+                    } else if (event.pageX - originalPageX > progressLenth) {
+                        progress = 100 / progressLenth;
+                    }
+                    this.setState({ 'progress': `${progress * 100}%` });
+                    event.stopPropagation();
+                }
+            })
+            let vid = $('audio')[0]; 
+            vid.src = song;
+            vid.onloadeddata = () => {
+                this.setState({ 'duration': this.convert(vid.duration)});
             }
 
-        };
+            vid.ontimeupdate = () => {
+                if (!tag) {
+                    this.setState({ 'progress': `${vid.currentTime / vid.duration * 100}%` });
+                    this.setState({ 'playedTime': this.convert(vid.currentTime) });
+                }
+    
+            };
+        }, 0);
     }
     lockPlaybar() {
         this.setState({ locked: !this.state.locked });
@@ -82,7 +95,7 @@ export default class Playbar extends Component {
 
         return (
             <div className={playbarClass}>
-                <audio src={song}></audio>
+                <audio></audio>
                 <div className={styles.left}>
                     <div className={styles.wrap}>
                         <div className={styles.btns}>
@@ -98,8 +111,11 @@ export default class Playbar extends Component {
                             <div onClick={(e) => this.clickProgressBar(e)} className={styles.progress}>
                                 <div style={{ 'width': this.state.progress }} className={styles.played}></div>
                                 <span style={{ 'left': this.state.progress }} onMouseDown={(e) => this.progressMoveStart(e)} className={styles.dot}></span>
+                                <span className={styles.time}>
+                                    <span className={styles['played-time']}>{this.state.playedTime}</span>/
+                                    {this.state.duration}
+                                </span>
                             </div>
-                            <div className={styles.time}></div>
                         </div>
                     </div>
                 </div>
