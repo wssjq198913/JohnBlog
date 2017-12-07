@@ -218,3 +218,192 @@
         }
     }
 }
+
+.playbar-mobile {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    padding: 0 16px;
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: space-between;
+    @include respond-to(computer) {
+        display: none;
+    }
+    @include respond-to(tablet) {
+        display: none;
+    }
+
+    .info {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        .song {
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .singer {
+            font-size: 12px;
+            color: #999;
+        }
+    }
+
+    .btns {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        div:nth-child(1) {
+            font-size: 30px;
+        }
+        div:nth-child(2), div:nth-child(3) {
+            font-size: 18px;
+        }
+    }
+
+    .progress {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 2px;
+        background-color: #00a8ff;
+    }
+}
+
+@font-face {
+    font-family: iconfont;
+    src: url('//static0.qianqian.com/web/st/font/iconfont-4e6.woff') format('woff')
+}
+
+
+:global {
+    :global(.iconfont) {
+        font-family: iconfont!important;
+        font-size: 16px;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale
+    }
+
+    .icon-list:before {
+        content: "\e603"
+    }
+    
+    .icon-loop-single:before {
+        content: "\e604"
+    }
+    
+    .icon-arrow-right:before {
+        content: "\e605"
+    }
+    
+    .icon-loop:before {
+        content: "\e606"
+    }
+    
+    .icon-prev:before {
+        content: "\e607"
+    }
+    
+    .icon-favor:before {
+        content: "\e608"
+    }
+    
+    .icon-next:before {
+        content: "\e60a"
+    }
+    
+    .icon-download:before {
+        content: "\e60b"
+    }
+    
+    .icon-search:before {
+        content: "\e60c"
+    }
+    
+    .icon-zhanwei1:before {
+        content: "\e610"
+    }
+    
+    .icon-favor1:before {
+        content: "\e618"
+    }
+    
+    .icon-random:before {
+        content: "\e619"
+    }
+    
+    .icon-play:before {
+        content: "\e616"
+    }
+    
+    .icon-stop:before {
+        content: "\e617"
+    }
+    
+    .icon-mv:before {
+        content: "\e61b"
+    }
+    
+    .icon-arrow-down:before {
+        content: "\e61d"
+    }
+    
+    .icon-arrow-left:before {
+        content: "\e61e"
+    }
+    
+    .icon-arrow-up:before {
+        content: "\e61f"
+    }
+    
+    .icon-listen:before {
+        content: "\e609"
+    }
+    
+    .icon-round:before {
+        content: "\e60d"
+    }
+    
+    .icon-triangle:before {
+        content: "\e60e"
+    }
+    
+    .icon-information:before {
+        content: "\e60f"
+    }
+    
+    .icon-home:before {
+        content: "\e611"
+    }
+    
+    .icon-i:before {
+        content: "\e612"
+    }
+    
+    .icon-information-:before {
+        content: "\e613"
+    }
+    
+    .icon-bubble-filled-icon:before {
+        content: "\e614"
+    }
+    
+    .icon-round-right:before {
+        content: "\e615"
+    }
+    
+    .icon-vip:before {
+        content: "\e61a"
+    }
+    
+    .icon-word:before {
+        content: "\e61c"
+    }
+}

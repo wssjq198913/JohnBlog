@@ -110,37 +110,53 @@ export default class Playbar extends Component {
         });
 
         return (
-            <div className={playbarClass}>
-                <audio></audio>
-                <div className={styles.left}>
-                    <div className={styles.wrap}>
-                        <div className={styles.btns}>
-                            <a className={styles.pre}></a>
-                            <a onClick={this.state.isRunning ? () => this.pause() : () => this.play()} className={this.state.isRunning ? styles.pause : styles.play}></a>
-                            <a className={styles.next}></a>
-                        </div>
-                        <div className={styles['play-progress']}>
-                            <div className={styles.info}>
-                                <span className={styles.title}>我要快乐</span>
-                                <span className={styles.singer}>曾一鸣</span>
-                            </div>
-                            <div onClick={(e) => this.clickProgressBar(e)} className={styles.progress}>
-                                <div style={{ 'width': this.state.progress }} className={styles.played}></div>
-                                <div style={{ 'width': this.state.buffered }} className={styles.buffered}></div>
-                                <span style={{ 'left': this.state.progress }} onMouseDown={(e) => this.progressMoveStart(e)} className={styles.dot}></span>
-                                <span className={styles.time}>
-                                    <span className={styles['played-time']}>{this.state.playedTime}</span>/
-                                    {this.state.duration}
-                                </span>
-                            </div>
-                        </div>
+            <div>
+                <div className={`${styles['playbar-mobile']}`}>
+                    <div className={styles.info}>
+                        <div className={styles.song}>我要快乐</div>
+                        <div className={styles.singer}>曾一鸣</div>
                     </div>
+                    <div className={styles.btns}>
+                        {this.state.isRunning ? <div onClick={()=>this.pause()} class="iconfont play icon-stop"></div> :
+                        <div onClick={()=>this.play()} class="iconfont play icon-play"></div>
+                        }
+                        <div class="iconfont icon-next"></div>
+                        <div class="iconfont icon-list"></div>
+                    </div>
+                    <div style={{'width': this.state.progress}} className={styles.progress}></div>
                 </div>
-                <div className={styles.right}>
-                    <div className={styles['lock-section']}>
-                        <div onClick={() => this.lockPlaybar()} className={lockClass}></div>
+                <div className={`${playbarClass}`}>
+                    <audio></audio>
+                    <div className={styles.left}>
+                        <div className={styles.wrap}>
+                            <div className={styles.btns}>
+                                <a className={styles.pre}></a>
+                                <a onClick={this.state.isRunning ? () => this.pause() : () => this.play()} className={this.state.isRunning ? styles.pause : styles.play}></a>
+                                <a className={styles.next}></a>
+                            </div>
+                            <div className={styles['play-progress']}>
+                                <div className={styles.info}>
+                                    <span className={styles.title}>我要快乐</span>
+                                    <span className={styles.singer}>曾一鸣</span>
+                                </div>
+                                <div onClick={(e) => this.clickProgressBar(e)} className={styles.progress}>
+                                    <div style={{ 'width': this.state.progress }} className={styles.played}></div>
+                                    <div style={{ 'width': this.state.buffered }} className={styles.buffered}></div>
+                                    <span style={{ 'left': this.state.progress }} onMouseDown={(e) => this.progressMoveStart(e)} className={styles.dot}></span>
+                                    <span className={styles.time}>
+                                        <span className={styles['played-time']}>{this.state.playedTime}</span>/
+                                    {this.state.duration}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className={styles.fill}></div>
+                    <div className={styles.right}>
+                        <div className={styles['lock-section']}>
+                            <div onClick={() => this.lockPlaybar()} className={lockClass}></div>
+                        </div>
+                        <div className={styles.fill}></div>
+                    </div>
                 </div>
             </div>
         )
