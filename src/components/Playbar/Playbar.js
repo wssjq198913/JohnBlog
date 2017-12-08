@@ -129,7 +129,9 @@ export default class Playbar extends Component {
                     </div>
                     <div className={styles.btns}>
                         {this.state.isRunning ? <div onClick={()=>this.pause()} class="iconfont play icon-stop"></div> :
-                        <div onClick={()=>this.play()} class="iconfont play icon-play"></div>
+                        <div onClick={()=>this.play()} class="iconfont play icon-play">
+                            <i className={this.state.loading ? styles.loading : ''}></i>
+                        </div>
                         }
                         <div class="iconfont icon-next"></div>
                         <div class="iconfont icon-list"></div>
