@@ -18,7 +18,9 @@ export default class Playbar extends Component {
                 progress: 0,
                 duration: '00:00',
                 playedTime: '00:00',
-                buffered: 0
+                buffered: 0,
+                loading:false,
+                timeWhenLoading:0
             };
     }
     convert(value) {
@@ -56,6 +58,12 @@ export default class Playbar extends Component {
             vid.onended = () => {
                 window.clearInterval(interval);
             }
+
+            vid.onwaiting = () => {
+                this.setState({ 'loading': true });
+                this.setState({ 'timeWhenLoading': vid.currentTime });
+            }
+
             vid.src = song;
             // there's a issue with ontimeupdate, the time change is not smooth, so I decided to use setInterval
             // vid.ontimeupdate = () => {
@@ -90,6 +98,9 @@ export default class Playbar extends Component {
                 this.setState({ 'progress': `${vid.currentTime / vid.duration * 100}%` });
                 this.setState({ 'playedTime': this.convert(vid.currentTime) });
                 this.setState({ 'buffered': `${vid.buffered.end(0) / vid.duration * 100}%` });
+                if (vid.currentTime > this.state.timeWhenLoading) {
+                    this.setState({ 'loading': false });
+                }
             }
         }, 500);
         this.setState({ isRunning: true });
@@ -131,7 +142,9 @@ export default class Playbar extends Component {
                         <div className={styles.wrap}>
                             <div className={styles.btns}>
                                 <a className={styles.pre}></a>
-                                <a onClick={this.state.isRunning ? () => this.pause() : () => this.play()} className={this.state.isRunning ? styles.pause : styles.play}></a>
+                                <a onClick={this.state.isRunning ? () => this.pause() : () => this.play()} className={this.state.isRunning ? styles.pause : styles.play}>
+                                    
+                                </a>
                                 <a className={styles.next}></a>
                             </div>
                             <div className={styles['play-progress']}>
@@ -142,7 +155,9 @@ export default class Playbar extends Component {
                                 <div onClick={(e) => this.clickProgressBar(e)} className={styles.progress}>
                                     <div style={{ 'width': this.state.progress }} className={styles.played}></div>
                                     <div style={{ 'width': this.state.buffered }} className={styles.buffered}></div>
-                                    <span style={{ 'left': this.state.progress }} onMouseDown={(e) => this.progressMoveStart(e)} className={styles.dot}></span>
+                                    <span style={{ 'left': this.state.progress }} onMouseDown={(e) => this.progressMoveStart(e)} className={styles.dot}>
+                                        <i className={this.state.loading ? styles.loading : ''}></i>
+                                    </span>
                                     <span className={styles.time}>
                                         <span className={styles['played-time']}>{this.state.playedTime}</span>/
                                     {this.state.duration}

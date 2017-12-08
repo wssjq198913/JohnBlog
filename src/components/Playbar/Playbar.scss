@@ -139,6 +139,16 @@
                         top: -7px;
                         margin-left: -11px;
                         z-index: 11;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+
+                        .loading {
+                            background-image: url('../../../static/loading.gif');
+                            width: 12px;
+                            height: 12px;
+                        }
                     }
 
                     .played {
