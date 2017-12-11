@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 import { browserHistory } from 'react-router';
 import styles from './Navbar.scss';
 import classNames from 'classnames/bind';
@@ -10,6 +11,10 @@ export default class Navbar extends Component {
     }
     goToMain() {
         browserHistory.push('/');
+    }
+    goToCategory(category) {
+        browserHistory.push(`/categories/${category}`);
+        $('body').removeClass('menu-collapsed');
     }
     render() {
         let classNames = cx({
@@ -26,17 +31,15 @@ export default class Navbar extends Component {
                     <li onClick={this.goToMain}>
                         <a>主页</a>
                     </li>
-                    <li className={`${styles['has-sub']} collapsed`} data-toggle="collapse" data-target="#category"><span style={{'marginRight': '32px'}} className='glyphicon glyphicon-file'></span>分类</li>
+                    <li className={`${styles['has-sub']} collapsed menu`} data-toggle="collapse" data-target="#category">
+                        <i className="material-icons sidebar-material-icons">chrome_reader_mode</i>分类
+                    </li>
                     <ul className="collapse" id="category">
-                        <li>
-                            <a>JavaScript</a>
-                        </li>
-                        <li>
-                            <a>HTML</a>
-                        </li>
-                        <li>
-                            <a>css</a>
-                        </li>
+                        {
+                            this.props.categories.map((itm) => {
+                                return <li onClick={() => this.goToCategory(itm.category)} key={itm.id}>{itm.category}<span className={styles['sidebar_archives-count']}>{itm.blogLength}</span></li>
+                            })
+                        }
                     </ul>
                     
                 </ul>

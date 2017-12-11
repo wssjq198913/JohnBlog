@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { Navbar, ArticleCard, Burger, GoTop, Logo } from '../../components';
+import { ArticleCard, Logo } from '../../components';
 import { loadBlogs, cleanBlogDetail } from '../../actions';
 
 class BlogList extends Component {
@@ -29,9 +29,6 @@ class BlogList extends Component {
   render() {
     return (
       <div>
-        <GoTop />
-        <Navbar />
-        <Burger click={(e) => this.props.showMenu(e)} />
         <section className='container'>
           <Logo />
           {

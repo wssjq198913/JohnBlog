@@ -1,4 +1,8 @@
-import { LOAD_BLOGS, LOAD_BLOGS_SUCCESS, LOAD_BLOG_DETAIL, LOAD_BLOG_DETAIL_SUCCESS, CLEAN_BLOG_DETAIL } from '../actions';
+import {
+    LOAD_BLOGS, LOAD_BLOGS_SUCCESS, LOAD_BLOG_DETAIL, LOAD_BLOG_DETAIL_SUCCESS,
+    CLEAN_BLOG_DETAIL, LOAD_ALL_CATEGORIES, LOAD_ALL_CATEGORIES_SUCCESS,
+    LOAD_BLOGS_BY_CATEGORY, LOAD_BLOGS_BY_CATEGORY_SUCCESS
+} from '../actions';
 const initialState = {
     blogs: [],
     detail: {
@@ -6,6 +10,8 @@ const initialState = {
         date: null,
         topic: null
     },
+    categories: [],
+    blogsByCategory: [],
     loading: false
 }
 
@@ -25,25 +31,25 @@ function reducers(state = initialState, action = {}) {
                     blogs: action.payload
                 };
             }
-            case LOAD_BLOG_DETAIL: {
+        case LOAD_BLOG_DETAIL: {
+            return {
+                ...state,
+                loading: true
+            };
+        }
+        case LOAD_BLOG_DETAIL_SUCCESS:
+            {
                 return {
                     ...state,
-                    loading: true
+                    loading: false,
+                    detail: {
+                        content: action.payload.content,
+                        date: action.payload.date,
+                        topic: action.payload.topic
+                    }
                 };
             }
-            case LOAD_BLOG_DETAIL_SUCCESS:
-                {
-                    return {
-                        ...state,
-                        loading: false,
-                        detail: {
-                            content: action.payload.content,
-                            date: action.payload.date,
-                            topic: action.payload.topic
-                        }
-                    };
-                }
-            case CLEAN_BLOG_DETAIL:
+        case CLEAN_BLOG_DETAIL:
             {
                 return {
                     ...state,
@@ -53,6 +59,35 @@ function reducers(state = initialState, action = {}) {
                         topic: null
                     },
                 }
+            }
+        case LOAD_ALL_CATEGORIES:
+            {
+                return {
+                    ...state,
+                    loading: true
+                }
+            }
+        case LOAD_ALL_CATEGORIES_SUCCESS:
+            {
+                return {
+                    ...state,
+                    loading: false,
+                    categories: action.payload
+                };
+            }
+        case LOAD_BLOGS_BY_CATEGORY: {
+            return {
+                ...state,
+                loading: true
+            };
+        }
+        case LOAD_BLOGS_BY_CATEGORY_SUCCESS:
+            {
+                return {
+                    ...state,
+                    loading: false,
+                    blogsByCategory: action.payload
+                };
             }
         default:
             return state;

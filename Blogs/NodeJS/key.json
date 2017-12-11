@@ -2,6 +2,7 @@
     "title": "NodeJS",
     "date": "2017/06/01",
     "author": "Johnny",
-    "category": "JavaScript",
+    "category": "技术",
+    "labels": ["0", "1"],
     "shortDescription": "This is just some sample description of test blog"
 }

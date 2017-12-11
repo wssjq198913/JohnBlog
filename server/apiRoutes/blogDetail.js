@@ -10,7 +10,7 @@ blogDetailRoute.post('/loadBlogDetail', (req, res) => {
 
 function getBlog(date, topic) {
     const isDevelopment = process.env.NODE_ENV == 'development';
-    const blogPath = isDevelopment ? path.join(__dirname, '../../Blogs/') : path.join(__dirname, 'Blogs/');
+    const blogPath = isDevelopment ? path.join(__dirname, 'Blogs/') : path.join(__dirname, 'Blogs/');
     const files = fs.readdirSync(blogPath);
     let content = null;
     let key = null;
@@ -19,7 +19,7 @@ function getBlog(date, topic) {
             key = JSON.parse(fs.readFileSync(`${blogPath}${itm}/key.json`, 'utf-8'));
             console.log(key.date, date)
             if (compareDate(key.date, date)) {
-                content = fs.readFileSync(`${blogPath}${itm}/${itm}.md`, 'utf-8');
+                content = fs.readFileSync(`${blogPath}${itm}/blog.md`, 'utf-8');
             }
         }
     })

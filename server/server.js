@@ -34,16 +34,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use((req, res, next) => {
-  if (Object.keys(req.query).length > 0) {
-    app.locals.queryString = {};
-  }
-  for (let key in req.query) {
-    app.locals.queryString[key] = req.query[key];
-  }
-  next();
-});
-
 if (__DEVELOPMENT__) {
   var webpack = require('webpack');
   var webpackConfig = require('../webpack/client.config.js');

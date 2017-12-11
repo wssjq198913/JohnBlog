@@ -23,7 +23,12 @@ export default function SSRRoute(req, res) {
                         if (component.InitialAction().type === 'LOAD_BLOG_DETAIL') {
                             store.dispatch(component.InitialAction(`${props.params.year}/${props.params.month}/${props.params.day}`, props.params.topic));
                         }
-                        store.dispatch(component.InitialAction());
+                        else if (component.InitialAction().type === 'LOAD_BLOGS_BY_CATEGORY') {
+                            store.dispatch(component.InitialAction(props.params.category));
+                        }
+                        else {
+                            store.dispatch(component.InitialAction());
+                        }
                     }
                 }
                 store.dispatch(END);

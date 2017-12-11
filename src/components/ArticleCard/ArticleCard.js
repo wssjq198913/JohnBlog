@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router';
 import styles from './ArticleCard.scss';
 import head from '../../../static/head.jpg';
 
@@ -11,7 +12,9 @@ export default class ArticleCard extends Component {
         // const img = require(`../../../static/card-background/${imgRandomNumber}.jpg`);
         // this.articleHeader.setAttribute('data-src', img)
     }
-
+    goToCategory(category) {
+        browserHistory.push(`/categories/${category}`);
+    }
     render() {
         return (
             <div className='row'>
@@ -30,7 +33,7 @@ export default class ArticleCard extends Component {
                             </div>
                         </div>
                         <div className={styles['article-type']}>
-                            <p>{this.props.category}</p>
+                            <p onClick={() => this.goToCategory(this.props.category)}>{this.props.category}</p>
                         </div>
                     </footer>
                     </div>

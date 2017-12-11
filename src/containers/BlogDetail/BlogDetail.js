@@ -4,7 +4,6 @@ import $ from 'jquery';
 import { connect } from 'react-redux';
 import marked from 'marked';
 import { loadBlogDetail } from '../../actions';
-import { Navbar, Burger, GoTop } from '../../components/index';
 import style from './BlogDetail.scss';
 
 marked.setOptions({
@@ -33,9 +32,6 @@ class BlogDetail extends Component {
         {
           this.props.loading ? <div></div> :
           <div>
-            <GoTop />
-            <Navbar />
-            <Burger click={(e) => this.props.showMenu(e)} />
             <div className='row'>
               <header className={style['article-header']}>
                 {this.props.params.topic}

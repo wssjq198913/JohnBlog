@@ -2,6 +2,7 @@
     "title": "ReactJS",
     "date": "2017/06/02",
     "author": "Johnny",
-    "category": "JavaScript",
+    "category": "技术",
+    "labels": ["0", "1"],
     "shortDescription": "This is just some sample description of ReactJS"
 }

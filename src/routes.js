@@ -8,6 +8,7 @@ import {
   App,
   BlogList,
   BlogDetail,
+  Category,
   NotFound
 } from './containers';
 
@@ -16,6 +17,7 @@ export default (
     { /* Home (main) route - the remaining routes were removed */}
     <IndexRoute component={BlogList}/>>
     <Route path="/blogs/:year/:month/:day/:topic" component={BlogDetail} />
+    <Route path="/categories/:category" component={Category} />
     <Route path="*" component={NotFound} status={404} />
   </Route>
 );

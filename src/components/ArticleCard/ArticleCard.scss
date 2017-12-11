@@ -66,6 +66,13 @@
         .article-type {
             display: flex;
             align-items: center;
+            
+            p {
+                color: #607d8b;
+                cursor: pointer;
+                font-weight: 400;
+                font-size: 13px;
+            }
         }
     }
 }

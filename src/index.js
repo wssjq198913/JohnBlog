@@ -7,9 +7,12 @@ import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './routes';
 
-let store = createStore();
+let store;
 if (window.__initialData__ != null && window.__initialData__ != ''){
   store = createStore(window.__initialData__);
+}
+else {
+  store = createStore();
 }
 const history = syncHistoryWithStore(browserHistory, store);
 
