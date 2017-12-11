@@ -1,85 +1,89 @@
 @import '../../theme/variables.scss';
 
 :global(.menu-collapsed) .burger {
-    transform: translate(260px);
-    opacity: 0;
+  transform: translate(260px);
+  opacity: 0;
 }
 
-.burger {
-  cursor: pointer;
-  position: fixed;
-  top: 50px;
-  left: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  width: 40px;
-  cursor: pointer;
-  transform: translateX(0);
-  transition: all .5s ease-in-out;
-  @include respond-to(phone) {
-    position: absolute;
-    z-index: 100;
-  }
+.burger-wrap {
+  .burger {
+    cursor: pointer;
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 40px;
+    cursor: pointer;
+    transform: translateX(0);
+    transition: all .5s ease-in-out;
+    @include respond-to(phone) {
+      position: absolute;
+      z-index: 100;
+      left: 15px;
+      top: 15px;
+    }
 
-  &:hover {
+    &:hover {
+      > p {
+        &:nth-child(1) {
+          &:after {
+            width: 28px;
+          }
+        }
+
+        &:nth-child(2) {
+          &:after {
+            width: 40px;
+          }
+        }
+
+        &:nth-child(3) {
+          &:after {
+            width: 34px;
+          }
+        }
+      }
+    }
+
     > p {
+      height: 8px;
+      background-color: #202121;
+      margin: 2px 0;
+
       &:nth-child(1) {
+        width: 28px;
+
         &:after {
-          width: 28px;
+          transition-delay: .1s;
         }
       }
 
       &:nth-child(2) {
+        width: 40px;
+
         &:after {
-          width: 40px;
+          transition-delay: .2s;
         }
       }
 
       &:nth-child(3) {
+        width: 34px;
+
         &:after {
-          width: 34px;
+          transition-delay: .3s;
         }
       }
-    }
-  }
-
-  > p {
-    height: 8px;
-    background-color: #202121;
-    margin: 2px 0;
-
-    &:nth-child(1) {
-      width: 28px;
 
       &:after {
-        transition-delay: .1s;
+        content: '';
+        background-color: #A6ABAB;
+        position: absolute;
+        height: 8px;
+        width: 0;
+        transition: all .2s linear;
       }
-    }
-
-    &:nth-child(2) {
-      width: 40px;
-
-      &:after {
-        transition-delay: .2s;
-      }
-    }
-
-    &:nth-child(3) {
-      width: 34px;
-
-      &:after {
-        transition-delay: .3s;
-      }
-    }
-
-    &:after {
-      content: '';
-      background-color: #A6ABAB;
-      position: absolute;
-      height: 8px;
-      width: 0;
-      transition: all .2s linear;
     }
   }
 }

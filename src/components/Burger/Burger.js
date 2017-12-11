@@ -6,10 +6,12 @@ export default class Navbar extends Component {
     }
     render() {
         return (
-            <div className={styles.burger} onClick={this.props.click}>
-                <p></p>
-                <p></p>
-                <p></p>
+            <div className={styles['burger-wrap']}>
+                <div className={styles.burger} onClick={this.props.click}>
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                </div>
             </div>
         )
     }
