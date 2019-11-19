@@ -1,0 +1,246 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn dev
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/johnny/Library/Android/Sdk/tools:/Users/johnny/Library/Android/Sdk/platform-tools:/Users/johnny/Library/Android/Sdk/tools:/Users/johnny/Library/Android/Sdk/platform-tools
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  8.9.4
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "JohnBlog",
+    "version": "1.0.0",
+    "description": "Johnny's Blog",
+    "main": "bin/server.js",
+    "scripts": {
+      "clean": "rimraf dist/*",
+      "build:dev": "better-npm-run build-dev && better-npm-run start-dev",
+      "dev": "npm run clean && nodemon --exec npm run build:dev",
+      "build:uat": "npm run clean && better-npm-run build-client-uat && better-npm-run build-server-uat",
+      "build:production": "npm run clean && better-npm-run build-client-production && better-npm-run build-server-production",
+      "start:uat": "better-npm-run start-uat",
+      "push:uat": "better-npm-run push-uat",
+      "push:production": "better-npm-run push-production",
+      "test": "better-npm-run test",
+      "test:watch": "better-npm-run test-watch",
+      "coverage": "better-npm-run coverage"
+    },
+    "betterScripts": {
+      "build-dev": {
+        "command": "webpack --colors --display-error-details --config webpack/server.config.js",
+        "env": {
+          "HOST": "http://localhost",
+          "PORT": 4050,
+          "NODE_ENV": "development"
+        }
+      },
+      "start-dev": {
+        "command": "node ./dist/server/server.js",
+        "env": {
+          "HOST": "http://localhost",
+          "PORT": 4050,
+          "NODE_ENV": "development"
+        }
+      },
+      "build-client-uat": {
+        "command": "webpack --colors --display-error-details --config webpack/client.config.js",
+        "env": {
+          "NODE_ENV": "uat",
+          "HOST": "http://120.92.133.3",
+          "PORT": 80
+        }
+      },
+      "build-server-uat": {
+        "command": "webpack --colors --display-error-details --config webpack/server.config.js",
+        "env": {
+          "NODE_ENV": "uat",
+          "HOST": "http://120.92.133.3",
+          "PORT": 80
+        }
+      },
+      "start-uat": {
+        "command": "node ./dist/server/server.js",
+        "env": {
+          "PORT": 80,
+          "NODE_ENV": "uat"
+        }
+      },
+      "build-client-production": {
+        "command": "webpack --colors --display-error-details --config webpack/client.config.js",
+        "env": {
+          "NODE_ENV": "production",
+          "HOST": "http://45.77.248.142",
+          "PORT": 80
+        }
+      },
+      "build-server-production": {
+        "command": "webpack --colors --display-error-details --config webpack/server.config.js",
+        "env": {
+          "NODE_ENV": "production",
+          "HOST": "http://45.77.248.142",
+          "PORT": 80
+        }
+      },
+      "push-uat": {
+        "command": "babel-node tools/push",
+        "env": {
+          "NODE_ENV": "uat"
+        }
+      },
+      "push-production": {
+        "command": "babel-node tools/push",
+        "env": {
+          "NODE_ENV": "production"
+        }
+      },
+      "test": {
+        "command": "mocha \"specs/**/*@(.js|.jsx)\" --require specs/test_helper.js --compilers js:babel-core/register",
+        "env": {
+          "NODE_ENV": "test"
+        }
+      },
+      "test-watch": {
+        "command": "mocha \"specs/**/*@(.js|.jsx)\" --require specs/test_helper.js --compilers js:babel-core/register --watch",
+        "env": {
+          "NODE_ENV": "test"
+        }
+      },
+      "coverage": {
+        "command": "istanbul cover --root ./src --report text --report html node_modules/mocha/bin/_mocha -- \"specs/**/*@(.js|.jsx)\"  --require specs/test_helper.js --compilers js:babel-core/register",
+        "env": {
+          "NODE_ENV": "test"
+        }
+      }
+    },
+    "keywords": [
+      "ExpressJS",
+      "ReactJS",
+      "Redux",
+      "React hot loader",
+      "React Router",
+      "SCSS",
+      "Webpack Devevelopment configuration",
+      "Webpack Production configuration",
+      "Airbnb Eslint",
+      "pm2",
+      "mocha",
+      "chai"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git@github.com:wssjq198913/JohnBlog.git"
+    },
+    "author": "Johnny",
+    "license": "MIT",
+    "engines": {
+      "node": "6.9.4"
+    },
+    "dependencies": {
+      "body-parser": "^1.18.2",
+      "classnames": "^2.2.5",
+      "compression": "^1.7.1",
+      "css-modules-require-hook": "^4.2.2",
+      "ejs": "^2.5.7",
+      "express": "^4.16.2",
+      "install": "^0.10.1",
+      "jquery": "^3.2.1",
+      "jquery-lazy": "^1.7.7",
+      "lodash": "^4.17.4",
+      "marked": "^0.3.6",
+      "morgan": "^1.9.0",
+      "npm": "^5.5.1",
+      "nprogress": "^0.2.0",
+      "prop-types": "^15.6.0",
+      "react": "^16.0.0",
+      "react-dom": "^16.0.0",
+      "react-helmet": "^5.2.0",
+      "react-hot-loader": "^3.1.3",
+      "react-redux": "^5.0.6",
+      "react-router": "^3.2.0",
+      "react-router-redux": "^4.0.8",
+      "redux": "^3.7.2",
+      "redux-logger": "^3.0.6",
+      "redux-saga": "^0.15.6",
+      "request": "^2.83.0",
+      "scroll-behavior": "^0.9.3",
+      "serve-favicon": "^2.4.5"
+    },
+    "devDependencies": {
+      "autoprefixer": "^7.1.6",
+      "babel-cli": "^6.26.0",
+      "babel-eslint": "^8.0.1",
+      "babel-loader": "^7.1.2",
+      "babel-plugin-transform-export-extensions": "^6.22.0",
+      "babel-polyfill": "^6.26.0",
+      "babel-preset-env": "^1.6.0",
+      "babel-preset-react": "^6.24.1",
+      "babel-preset-stage-3": "^6.24.1",
+      "better-npm-run": "^0.1.0",
+      "chai": "^4.1.2",
+      "chai-immutable": "^1.6.0",
+      "child_process": "^1.0.2",
+      "compression-webpack-plugin": "^1.0.1",
+      "copy-webpack-plugin": "^4.1.1",
+      "css-hot-loader": "^1.3.2",
+      "css-loader": "^0.28.7",
+      "enzyme": "^3.1.0",
+      "enzyme-adapter-react-16": "^1.0.1",
+      "eslint": "^4.8.0",
+      "eslint-loader": "^1.9.0",
+      "eslint-plugin-react": "^7.4.0",
+      "extract-text-webpack-plugin": "^3.0.1",
+      "file-loader": "^1.1.5",
+      "git-repository": "^0.1.4",
+      "html-webpack-harddisk-plugin": "^0.1.0",
+      "html-webpack-plugin": "^2.30.1",
+      "immutable": "^3.8.2",
+      "istanbul": "^1.1.0-alpha.1",
+      "jsdom": "^11.3.0",
+      "json-loader": "^0.5.7",
+      "mocha": "^4.0.1",
+      "node-sass": "^4.5.3",
+      "nodemon": "^1.12.1",
+      "postcss-loader": "^2.0.8",
+      "raw-loader": "^0.5.1",
+      "react-test-renderer": "^16.0.0",
+      "rimraf": "^2.6.2",
+      "sass-loader": "^6.0.6",
+      "sinon": "^4.0.1",
+      "style-loader": "^0.19.0",
+      "url-loader": "^0.6.2",
+      "webpack": "^3.7.1",
+      "webpack-bundle-analyzer": "^2.9.0",
+      "webpack-dev-middleware": "^1.12.0",
+      "webpack-hot-middleware": "^2.19.1",
+      "webpack-node-externals": "^1.6.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: Command failed.
+  Exit code: 1
+  Command: sh
+  Arguments: -c npm run clean && nodemon --exec npm run build:dev
+  Directory: /Users/johnny/JohnBlog
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
+      at emitTwo (events.js:126:13)
+      at ChildProcess.emit (events.js:214:7)
+      at maybeClose (internal/child_process.js:925:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
